@@ -1,0 +1,335 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.offers.OffersFragment"
+    android:focusableInTouchMode="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Informacion general -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Docente -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/teacher_label"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/client_name_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18" />
+
+                </LinearLayout>
+
+                <!-- Oferta maxima -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="19dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/max_offer_amount"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/max_offer_amount_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18" />
+
+                </LinearLayout>
+
+                <!-- Tipo de credito -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="19dp">
+
+                    <TextView
+                        android:id="@+id/credit_type_label_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/credit_type_label_2"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/credit_type_value_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18" />
+
+                </LinearLayout>
+
+                <!-- Capacidad de endeudamiento -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:id="@+id/borrow_label_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/borrow_text_label"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/borrow_value_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lineColor"/>
+
+            <!-- Titulo Ofertas -->
+            <TextView
+                android:id="@+id/offers_label_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/offers_title"
+                android:textColor="@color/offerTitle"
+                android:textSize="@dimen/dimen18"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Lista de ofertas -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/offers_list_container_view"
+                    android:orientation="vertical"
+                    android:background="@drawable/background_offers_body">
+
+                    <include layout="@layout/offer_header"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/offers_list_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginBottom="9dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/no_offers_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/no_offers_all"
+                    android:textColor="@color/black" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lineColor"/>
+
+            <!-- Saldo de credito -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="28dp">
+
+                <!-- Saldo de credito anterior -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/last_amount_label_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/last_amount_label"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/last_amount_value_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- Monto a desembolsar -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="23dp">
+
+                    <TextView
+                        android:id="@+id/real_amount_label_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="@string/real_amount_label"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/real_amount_value_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Formas de desembolso -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="53dp">
+
+                <TextView
+                    android:id="@+id/disbursement_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/disbursement_text"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen18"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:id="@+id/disbursement_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="14dp">
+
+                    <RadioButton
+                        android:id="@+id/checkout_option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/checkout_option"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18"
+                        android:buttonTint="@drawable/drawable_radio_button"
+                        tools:targetApi="lollipop" />
+
+                    <RadioButton
+                        android:id="@+id/check_option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/check_option"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18"
+                        android:buttonTint="@drawable/drawable_radio_button"
+                        tools:targetApi="lollipop"/>
+
+                    <RadioButton
+                        android:id="@+id/deposit_option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/deposit_option"
+                        android:textColor="@color/textColor3"
+                        android:textSize="@dimen/dimen18"
+                        android:buttonTint="@drawable/drawable_radio_button"
+                        tools:targetApi="lollipop"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <!-- Otorgar credito -->
+            <Button
+                android:id="@+id/generate_btn"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/generate_button"
+                android:textAllCaps="true"
+                android:background="@drawable/button_credit_drawable"
+                android:textColor="@color/white"
+                android:enabled="false"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

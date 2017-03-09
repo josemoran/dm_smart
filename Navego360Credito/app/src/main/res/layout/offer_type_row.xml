@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:background="@drawable/offer_type_cell">
+
+    <!-- Tipo de Oferta -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp">
+
+        <RelativeLayout
+            android:id="@+id/background_offer_type_view"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/background_offer_type">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_creditos" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_offer_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:text="@string/creditos_label"
+            android:textColor="@color/creditoColor"
+            android:textSize="@dimen/dimen18" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"
+
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Datos de credito -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:orientation="vertical">
+
+        <!-- Monto -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/amount_label_view"
+                android:text="@string/amount_label"
+                android:textColor="@color/textColor1"
+                android:textStyle="bold"
+                android:textSize="@dimen/dimen18"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/amount_value_view"
+                android:textColor="@color/textColor1"
+                android:textStyle="bold"
+                android:textSize="@dimen/dimen18"
+                android:paddingLeft="@dimen/space_text"/>
+        </LinearLayout>
+
+        <!-- Tipo de credito -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/credit_type_label_view"
+                android:text="@string/credit_type_label"
+                android:textColor="@color/textColor1"
+                android:textSize="@dimen/dimen15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/credit_type_value_view"
+                android:textColor="@color/textColor2"
+                android:textSize="@dimen/dimen15"
+                android:paddingLeft="@dimen/space_text"/>
+        </LinearLayout>
+
+        <!-- Cuota -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/quota_label_view"
+                android:text="@string/quota_label"
+                android:textColor="@color/textColor1"
+                android:textSize="@dimen/dimen15" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/quota_value_view"
+                android:textColor="@color/textColor2"
+                android:textSize="@dimen/dimen15"
+                android:paddingLeft="@dimen/space_text"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/credit_date_label_view"
+                android:text="@string/credit_date_label"
+                android:textColor="@color/textColor1"
+                android:textSize="@dimen/dimen15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/credit_date_value_view"
+                android:textColor="@color/textColor2"
+                android:textSize="@dimen/dimen15"
+                android:paddingLeft="@dimen/space_text"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineColor"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="7dp"/>
+
+    <!-- Datos de oferta maxima -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="13dp"
+        android:paddingRight="13dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <!-- Primera fila -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:baselineAligned="false">
+
+            <!-- TCEA -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tcea_label_view"
+                    android:text="@string/tcea_label"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tcea_value_view"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"
+                    android:paddingLeft="@dimen/space_text"/>
+
+            </LinearLayout>
+
+            <!-- FLAT -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="start">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/flat_label_view"
+                    android:text="@string/flat_label"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/flat_value_view"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"
+                    android:paddingLeft="@dimen/space_text"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Segunda fila -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:baselineAligned="false">
+
+            <!-- Tasa de interes -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rate_label_view"
+                    android:text="@string/rate_label"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rate_value_view"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"
+                    android:paddingLeft="@dimen/space_text"/>
+            </LinearLayout>
+
+            <!-- Desgravamen -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/disgrace_label_view"
+                    android:text="@string/disgrace_label"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/disgrace_value_view"
+                    android:textColor="@color/textColor1"
+                    android:textSize="@dimen/dimen15"
+                    android:paddingLeft="@dimen/space_text"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    
+</LinearLayout>

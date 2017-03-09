@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1665c0</color>
+    <color name="colorPrimaryDark">#105099</color>
+    <color name="colorAccent">#43aee4</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+
+    <color name="endBackground">#43aee4</color>
+    <color name="startBackground">#33378e</color>
+
+    <color name="backgroundColor">#f0f0f0</color>
+    <color name="lineColor">#c6c6c6</color>
+    <color name="shadowColor">#80000000</color>
+    <color name="textColor1">#4a4a4a</color>
+    <color name="textColor2">#808080</color>
+    <color name="textColor3">#727172</color>
+
+    <color name="cancelColor">#666666</color>
+    <color name="acceptColor">#8cc63f</color>
+
+    <color name="offerTitle">#2b5fb6</color>
+    <color name="offerHeader">#2a5fb6</color>
+    <color name="offersBorder">#979797</color>
+    <color name="optionColor">#89010101</color>
+    <color name="buttonColor1">#8cc63f</color>
+    <color name="buttonColorOff1">#808cc63f</color>
+
+    <color name="creditoColor">#8cc63f</color>
+    <color name="plazaColor">#f56123</color>
+    <color name="hotelesColor">#e04f5f</color>
+    <color name="viviendaColor">#f5a623</color>
+
+</resources>

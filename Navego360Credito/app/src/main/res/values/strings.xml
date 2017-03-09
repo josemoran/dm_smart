@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Navego 360 Credito</string>
+
+    <!-- SPLASH -->
+    <string name="invalid_open_app">Debe abrir la aplicación desde Navego360</string>
+    <string name="close_dialog_btn">Entendido</string>
+
+    <!-- TIPOS DE OFERTAS -->
+    <string name="offer_expired_date_label">Ofertas válidas hasta</string>
+    <string name="no_offers_all">No se cuenta con ninguna oferta disponible.</string>
+    <string name="successfully_saved_offer_message">Se han guardado los cambios.</string>
+    <string name="loading_offes_error">Hubo un problema al cargar las ofertas.</string>
+    <string name="expire_offers_error">Las ofertas han expirado.</string>
+    
+    <string name="creditos_label">Créditos</string>
+    <string name="plaza_label">Plaza</string>
+    <string name="hoteles_label">Hoteles</string>
+    <string name="vivienda_label">Vivienda</string>
+    
+    <string name="credit_type_label">Tipo de crédito:</string>
+    <string name="amount_label">Monto aprobado:</string>
+    <string name="quota_label">Valor de cuota:</string>
+    <string name="credit_date_label">Plazo crédito:</string>
+    <string name="tcea_label">TCEA:</string>
+    <string name="rate_label">Tasa de interés:</string>
+    <string name="flat_label">Gasto Flat:</string>
+    <string name="disgrace_label">Desgravamen:</string>
+
+    <string name="send_print">Imprimir</string>
+    <string name="send_email">Enviar correo</string>
+
+    <!-- OFERTAS -->
+    <string name="offers_action_bar">Cálculo de crédito</string>
+    <string name="teacher_label">Docente</string>
+    <string name="alert_message">Variaron Datos de la Boleta</string>
+    <string name="max_offer_amount">Oferta máxima</string>
+    <string name="credit_type_label_2">Tipo de crédito</string>
+    <string name="borrow_text_label">Capacidad de endeudamiento </string>
+    <string name="offers_title">Ofertas</string>
+    <string name="date_label_header">Plazo</string>
+    <string name="quota_label_header">Cuota</string>
+    <string name="tcea_label_header">TCEA</string>
+    <string name="last_amount_label">Saldo crédito anterior</string>
+    <string name="real_amount_label">Monto a desembolsar</string>
+    <string name="disbursement_text">Forma de desembolso</string>
+    <string name="checkout_option">Caja/Boveda</string>
+    <string name="check_option">Cheque de Gerencia</string>
+    <string name="deposit_option">Deposito en Cuenta</string>
+    <string name="generate_button">Otorgar crédito</string>
+
+    <string name="invalid_select_offer">No puede seleccionar esta oferta</string>
+
+    <string name="edit_offer">Editar</string>
+    <string name="save_offer">Guardar</string>
+
+    <string name="money_symbol">S./ </string>
+    <string name="date_value">meses</string>
+    <string name="percentage_symbol">%</string>
+    
+    <!-- Dialog -->
+    <string name="confirm_text">¿Confirma esta operación?</string>
+    <string name="accept_text">Aceptar</string>
+    <string name="cancel_text">Cancelar</string>
+    <string name="close_btn">X</string>
+    <string name="credit_approved">Crédito otorgado</string>
+
+    <!-- DOCENTE -->
+    <string name="loading_user_info_error">Hubo un problema al cargar los datos del docente.</string>
+
+</resources>
