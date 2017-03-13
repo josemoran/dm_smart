@@ -7,8 +7,8 @@ import com.navego360.credito.data.offertype.OfferTypesDataSource;
 import com.navego360.credito.data.offertype.OfferTypesRepository;
 import com.navego360.credito.data.userinfo.UserInfoDataSource;
 import com.navego360.credito.data.userinfo.UserInfoRepository;
-import com.navego360.credito.models.OfferType;
-import com.navego360.credito.models.UserInfo;
+import com.navego360.credito.models.credito.OfferType;
+import com.navego360.credito.models.credito.UserInfo;
 import com.navego360.credito.variables.OffersFilterType;
 
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     private final OfferTypesContract.View mOffersTypeView;
     private final OfferTypesRepository mOffersTypeRepository;
     private OffersFilterType mCurrentFiltering = OffersFilterType.ALL_OFFERS;
-
-    private boolean mFirstLoad = true;
 
     private final CreditoRepository mCreditoRepository;
 
@@ -40,7 +38,7 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     @Override
     public void start() {
         loadUserInfo();
-        loadOffersType(false);
+        loadOffersType();
     }
 
     @Override
@@ -71,11 +69,7 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     }
 
     @Override
-    public void loadOffersType(boolean forceUpdate) {
-        if (mFirstLoad || forceUpdate) {
-            mOffersTypeRepository.refreshOfferTypes();
-        }
-
+    public void loadOffersType() {
         mOffersTypeRepository.getOfferTypes(new OfferTypesDataSource.LoadOfferTypesCallback() {
             @Override
             public void onOfferTypesLoaded(List<OfferType> offerTypes) {
@@ -103,8 +97,6 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
                 mOffersTypeView.showLoadingOffersError();
             }
         });
-
-        mFirstLoad = false;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.navego360.credito.data.userinfo;
 
-import com.navego360.credito.models.UserInfo;
+import com.navego360.credito.models.credito.UserInfo;
 
 public class UserInfoRepository implements UserInfoDataSource {
     private static UserInfoRepository INSTANCE = null;
@@ -25,6 +25,19 @@ public class UserInfoRepository implements UserInfoDataSource {
 
     public static void destroyInstance() {
         INSTANCE = null;
+    }
+
+    @Override
+    public void saveDisbursementOption(UserInfo userInfo, String optionIndex) {
+        mUserInfoLocalDataSource.saveDisbursementOption(userInfo, optionIndex);
+
+        userInfo.setDisbursement(optionIndex);
+
+        // Do in memory cache update to keep the app UI up to date
+        if (mCachedUserInfo == null) {
+            mCachedUserInfo = new UserInfo();
+        }
+        mCachedUserInfo = userInfo;
     }
 
     @Override
@@ -53,29 +66,30 @@ public class UserInfoRepository implements UserInfoDataSource {
 
             @Override
             public void onDataNotAvailable() {
-                mUserInfoRemoteDataSource.getUserInfo(new GetUserInfoCallback() {
-                    @Override
-                    public void onUserInfoLoaded(UserInfo userInfo) {
-                        // Do in memory cache update to keep the app UI up to date
-                        if (mCachedUserInfo == null) {
-                            mCachedUserInfo = new UserInfo();
-                        }
-                        mCachedUserInfo = userInfo;
-                        callback.onUserInfoLoaded(userInfo);
-                    }
-
-                    @Override
-                    public void onDataNotAvailable() {
-                        callback.onDataNotAvailable();
-                    }
-                });
+//                mUserInfoRemoteDataSource.getUserInfo(new GetUserInfoCallback() {
+//                    @Override
+//                    public void onUserInfoLoaded(UserInfo userInfo) {
+//                        // Do in memory cache update to keep the app UI up to date
+//                        if (mCachedUserInfo == null) {
+//                            mCachedUserInfo = new UserInfo();
+//                        }
+//                        mCachedUserInfo = userInfo;
+//                        callback.onUserInfoLoaded(userInfo);
+//                    }
+//
+//                    @Override
+//                    public void onDataNotAvailable() {
+//                        callback.onDataNotAvailable();
+//                    }
+//                });
+                callback.onDataNotAvailable();
             }
         });
     }
 
     @Override
     public void saveUserInfo(UserInfo userInfo) {
-        mUserInfoRemoteDataSource.saveUserInfo(userInfo);
+//        mUserInfoRemoteDataSource.saveUserInfo(userInfo);
         mUserInfoLocalDataSource.saveUserInfo(userInfo);
 
         // Do in memory cache update to keep the app UI up to date
@@ -87,7 +101,7 @@ public class UserInfoRepository implements UserInfoDataSource {
 
     @Override
     public void deleteAllUserInfo() {
-        mUserInfoRemoteDataSource.deleteAllUserInfo();
+//        mUserInfoRemoteDataSource.deleteAllUserInfo();
         mUserInfoLocalDataSource.deleteAllUserInfo();
 
         if (mCachedUserInfo == null) {

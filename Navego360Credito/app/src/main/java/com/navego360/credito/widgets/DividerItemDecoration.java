@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,17 +33,29 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
      * Custom divider will be used
      */
     public DividerItemDecoration(Context context, int resId) {
-        divider = ContextCompat.getDrawable(context, resId);
+        if (Build.VERSION.SDK_INT >= 21) {
+            divider = ContextCompat.getDrawable(context, resId);
+        } else {
+            divider = context.getResources().getDrawable(resId);
+        }
     }
 
     public DividerItemDecoration(Context context, int resId, int orientation) {
-        divider = ContextCompat.getDrawable(context, resId);
+        if (Build.VERSION.SDK_INT >= 21) {
+            divider = ContextCompat.getDrawable(context, resId);
+        } else {
+            divider = context.getResources().getDrawable(resId);
+        }
         setOrientation(orientation);
     }
 
     public DividerItemDecoration(Context context, int resId, boolean showFirstDivider,
                                  boolean showLastDivider) {
-        divider = ContextCompat.getDrawable(context, resId);
+        if (Build.VERSION.SDK_INT >= 21) {
+            divider = ContextCompat.getDrawable(context, resId);
+        } else {
+            divider = context.getResources().getDrawable(resId);
+        }
         mShowFirstDivider = showFirstDivider;
         mShowLastDivider = showLastDivider;
     }

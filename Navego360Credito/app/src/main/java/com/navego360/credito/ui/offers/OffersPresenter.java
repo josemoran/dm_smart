@@ -1,7 +1,8 @@
 package com.navego360.credito.ui.offers;
 
+import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
 
 import com.navego360.credito.data.common.local.CreditoRepository;
 import com.navego360.credito.data.offer.OffersDataSource;
@@ -10,15 +11,21 @@ import com.navego360.credito.data.offertype.OfferTypesDataSource;
 import com.navego360.credito.data.offertype.OfferTypesRepository;
 import com.navego360.credito.data.userinfo.UserInfoDataSource;
 import com.navego360.credito.data.userinfo.UserInfoRepository;
-import com.navego360.credito.models.Offer;
-import com.navego360.credito.models.OfferType;
-import com.navego360.credito.models.UserInfo;
+import com.navego360.credito.models.credito.Offer;
+import com.navego360.credito.models.credito.OfferType;
+import com.navego360.credito.models.credito.UserInfo;
 import com.navego360.credito.utils.DateUtils;
 import com.navego360.credito.utils.DocumentUtils;
+import com.navego360.credito.utils.PrintUtils;
+import com.navego360.credito.utils.SaveNavegoUtils;
+import com.navego360.credito.widgets.ToastMessage;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
+import static com.navego360.credito.variables.Constants.SEND_MAIL_CODE;
 
 public class OffersPresenter implements OffersContract.Presenter {
 
@@ -27,8 +34,6 @@ public class OffersPresenter implements OffersContract.Presenter {
     private final OfferTypesRepository mOfferTypesRepository;
 
     private final String mOfferTypeId;
-    private String amount;
-    private double realAmount;
 
     private UserInfo mUserInfo;
     private OfferType mOfferType;
@@ -45,14 +50,22 @@ public class OffersPresenter implements OffersContract.Presenter {
         mOffersRepository = creditoRepository.getOffersRepository();
         mOfferTypesRepository = creditoRepository.getOfferTypesRepository();
         mOffersView = offerView;
-
         mOffersView.setPresenter(this);
     }
 
     @Override
     public void start() {
-        loadOffers(mOfferTypeId);
         loadUserInfo();
+        loadOffers(mOfferTypeId);
+    }
+
+    @Override
+    public void result(int requestCode, int resultCode) {
+        if(requestCode == SEND_MAIL_CODE){
+            if(resultCode == RESULT_OK){
+                mOffersView.showCompleteMailDialog();
+            }
+        }
     }
 
     @Override
@@ -78,7 +91,6 @@ public class OffersPresenter implements OffersContract.Presenter {
 
     @Override
     public void loadOffers(String offerTypeId) {
-
         mOfferTypesRepository.getOfferType(offerTypeId, new OfferTypesDataSource.GetOfferTypeCallback() {
             @Override
             public void onOfferTypeLoaded(OfferType offerType) {
@@ -91,6 +103,7 @@ public class OffersPresenter implements OffersContract.Presenter {
                 else {
                     mOfferType = offerType;
                     showOfferDetail(offerType);
+                    lockView(offerType.isCredited());
                 }
             }
 
@@ -106,35 +119,56 @@ public class OffersPresenter implements OffersContract.Presenter {
     }
 
     @Override
-    public void generateCredit() {
+    public void generateCredit(String disbursementOption, Offer offer) {
 
+        // Localmente
+        mOffersRepository.creditedOffer(offer);
+        mOfferTypesRepository.creditedOfferType(offer.getOfferTypeId());
+        mOfferTypesRepository.blockAllExceptOfferType(offer.getOfferTypeId());
+        mCreditoRepository.getUserInfoRepository().saveDisbursementOption(mUserInfo, disbursementOption);
+
+        // Navego
+        SaveNavegoUtils.saveOfferDetail(mContext, mUserInfo, offer);
+        SaveNavegoUtils.saveOffer(mContext, mUserInfo, offer);
+        SaveNavegoUtils.saveService(mContext, mUserInfo.getServiceId());
     }
 
     @Override
     public void printCreditedOffer(String disbursementOptions, Offer offer) {
         try {
-//            List<byte[]> data = DocumentUtils.secondDocument(false, "1000","72","15/10/15","8.46","1.85",
-//                    mOfferType.getCreditType(),disbursementOptions, offer.getTcea(),
-//                    mOfferType.getDisgrace(), mUserInfo.getUserName(),mUserInfo.getDocument());
             Date now = new Date();
             String nowFormat = DateUtils.convertDate(now, DateUtils.formatDate4);
-            List<byte[]> data = DocumentUtils.secondDocument(false, String.valueOf(realAmount),
-                    offer.getCreditDate(),nowFormat, mOfferType.getFlat(), "1.85",
+            List<byte[]> data = DocumentUtils.secondDocument(false, mUserInfo.getMaxOfferAmount(),
+                    offer.getCreditDate(),nowFormat, mOfferType.getFlat(), offer.getTcea(),
                     mOfferType.getCreditType(),disbursementOptions, offer.getTcea(),
                     mOfferType.getDisgrace(), mUserInfo.getUserName(),mUserInfo.getDocument());
-//            PrintUtils.printDocument(mContext, data);
+            PrintUtils.printDocument(mContext, data);
+            mOffersView.closePrintDialog();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @Override
+    public void sendEmailCredit(String disbursementOptions, Offer offer, String email) {
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{email});
+        i.putExtra(Intent.EXTRA_SUBJECT, "Titulo de prueba");
+        i.putExtra(Intent.EXTRA_TEXT   , "Probando");
+        try {
+            ((Activity)mContext).startActivityForResult(
+                    Intent.createChooser(i, "Enviar correo ..."), SEND_MAIL_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            ToastMessage.showMessage(mContext, "No se pudo mandar el correo");
+        }
+    }
+
     private void showOfferDetail(OfferType offerType){
-        amount = offerType.getAmount();
-        String creditType = offerType.getCreditType();
-
-        mOffersView.showAmount(amount);
-        mOffersView.showCreditType(creditType);
-
+        mOffersView.showCreditType("");
+        mOffersView.showTea("");
+        mOffersView.showFlat(offerType.getFlat());
+        mOffersView.showDisgrace(offerType.getDisgrace());
         mOffersRepository.getOffers(mOfferTypeId, new OffersDataSource.LoadOffersCallback() {
             @Override
             public void onOffersLoaded(List<Offer> offers) {
@@ -175,14 +209,19 @@ public class OffersPresenter implements OffersContract.Presenter {
 
     private void showOfferTypesInfo(UserInfo userInfo){
         mOffersView.showClientName(userInfo.getUserName());
+        mOffersView.showApprovedDate(userInfo.getApprovedDate());
+        mOffersView.showDiscount(userInfo.getDiscount());
         mOffersView.showBorrowCapacity(userInfo.getBorrowCapacity());
+        mOffersView.showAmount(userInfo.getMaxOfferAmount());
         mOffersView.showLastAmount(userInfo.getLastAmount());
-        if(amount != null) {
-            realAmount = Double.parseDouble(amount);
-            if(userInfo.getLastAmount() != null) {
-                realAmount = Double.parseDouble(amount) - Double.parseDouble(userInfo.getLastAmount());
-            }
-            mOffersView.showRealAmount(String.valueOf(realAmount));
+        mOffersView.showRealAmount(userInfo.getRealAmount());
+        mOffersView.setDisbursementOption(userInfo.getDisbursement());
+    }
+
+    private void lockView(boolean credited){
+        if(credited) {
+            mOffersView.showReadOnly();
+            mOffersView.blockOfferOptions(credited);
         }
     }
 }

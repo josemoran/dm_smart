@@ -1,6 +1,6 @@
 package com.navego360.credito.data.offer;
 
-import com.navego360.credito.models.Offer;
+import com.navego360.credito.models.credito.Offer;
 
 import java.util.List;
 

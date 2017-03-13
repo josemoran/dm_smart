@@ -1,4 +1,4 @@
-package com.navego360.credito.models;
+package com.navego360.credito.models.credito;
 
 public class OfferType {
     private String id;

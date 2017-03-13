@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
         if(fromNavego) showMain();
         else showCloseAppDialog();
-//        showMain();
     }
 
     private boolean showMain() {
+        CreditoRepository repository = CreditoRepository.getInstance(mContext);
+        BundleUtils.saveBundle(mContext, getIntent().getExtras(), repository);
+
         return new Handler().postDelayed(new Runnable() {
             public void run() {
                 openHome();
@@ -49,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Abrir Aplicacion
     private void openHome(){
-        CreditoRepository repository = CreditoRepository.getInstance(mContext);
-        BundleUtils.saveBundle(getIntent().getExtras(), repository);
-
         Intent home = new Intent().setClass(this, OfferTypesActivity.class);
         startActivity(home);
         finish();
@@ -75,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Cerrar aplicacion
     private void closeApp(){
-        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
-        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(homeIntent);
-        System.exit(0);
+        ExitActivity.exitApplication(mContext);
     }
 }

@@ -1,6 +1,6 @@
 package com.navego360.credito.data.userinfo;
 
-import com.navego360.credito.models.UserInfo;
+import com.navego360.credito.models.credito.UserInfo;
 
 public interface UserInfoDataSource {
 
@@ -10,6 +10,8 @@ public interface UserInfoDataSource {
 
         void onDataNotAvailable();
     }
+
+    void saveDisbursementOption(UserInfo userInfo, String optionIndex);
 
     void getUserInfo(GetUserInfoCallback callback);
 

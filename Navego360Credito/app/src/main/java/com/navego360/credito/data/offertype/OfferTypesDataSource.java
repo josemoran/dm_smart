@@ -1,6 +1,6 @@
 package com.navego360.credito.data.offertype;
 
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 
 import java.util.List;
 
@@ -26,11 +26,13 @@ public interface OfferTypesDataSource {
 
     void saveOfferType(OfferType offerType);
 
+    void blockNotCredited();
+
+    void blockAllExceptOfferType(String offerTypeId);
+
     void creditedOfferType(OfferType offerType);
 
     void creditedOfferType(String offerTypeId);
-
-    void refreshOfferTypes();
 
     void deleteAllOfferTypes();
 

@@ -12,11 +12,18 @@
     <color name="startBackground">#33378e</color>
 
     <color name="backgroundColor">#f0f0f0</color>
+    <color name="backgroundColorDisabled1">#efefef</color>
+    <color name="backgroundColor2">#ECF0F1</color>
+    <color name="backgroundColorDisabled2">#dadada</color>
     <color name="lineColor">#c6c6c6</color>
     <color name="shadowColor">#80000000</color>
     <color name="textColor1">#4a4a4a</color>
     <color name="textColor2">#808080</color>
     <color name="textColor3">#727172</color>
+    <color name="textColor4">#9b9b9b</color>
+    <color name="textColor5">#4d4d4d</color>
+
+    <color name="offerCredited">#ff3333</color>
 
     <color name="cancelColor">#666666</color>
     <color name="acceptColor">#8cc63f</color>
@@ -24,9 +31,10 @@
     <color name="offerTitle">#2b5fb6</color>
     <color name="offerHeader">#2a5fb6</color>
     <color name="offersBorder">#979797</color>
-    <color name="optionColor">#89010101</color>
+    <color name="optionColor">#010101</color>
     <color name="buttonColor1">#8cc63f</color>
-    <color name="buttonColorOff1">#808cc63f</color>
+    <color name="buttonColorOff1">#efefef</color>
+    <color name="buttonColor2">#43aee4</color>
 
     <color name="creditoColor">#8cc63f</color>
     <color name="plazaColor">#f56123</color>

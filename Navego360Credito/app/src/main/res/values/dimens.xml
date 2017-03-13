@@ -6,7 +6,9 @@
     <!-- Font Size -->
     <dimen name="dimen20">20dp</dimen>
     <dimen name="dimen18">18dp</dimen>
+    <dimen name="dimen16">16dp</dimen>
     <dimen name="dimen15">15dp</dimen>
+    <dimen name="dimen12">12dp</dimen>
 
     <!-- Spaces -->
     <dimen name="space_text">3dp</dimen>

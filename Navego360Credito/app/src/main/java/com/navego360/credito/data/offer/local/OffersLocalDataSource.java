@@ -6,9 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.navego360.credito.data.common.local.NavegoCreditDbHelper;
+import com.navego360.credito.data.common.local.NavegoCreditPersistenceContract;
 import com.navego360.credito.data.common.local.NavegoCreditPersistenceContract.OfferEntry;
 import com.navego360.credito.data.offer.OffersDataSource;
-import com.navego360.credito.models.Offer;
+import com.navego360.credito.models.credito.Offer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,12 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_QUOTA,
                 OfferEntry.COLUMN_NAME_CREDIT_DATE,
                 OfferEntry.COLUMN_NAME_TCEA,
+                OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST,
+                OfferEntry.COLUMN_NAME_RATE_GRACE,
+                OfferEntry.COLUMN_NAME_RATE_PROCESS,
+                OfferEntry.COLUMN_NAME_MONTH_GRACE,
+                OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
 
@@ -54,6 +61,12 @@ public class OffersLocalDataSource implements OffersDataSource {
                 offer.setQuota(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA)));
                 offer.setCreditDate(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDIT_DATE)));
                 offer.setTcea(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_TCEA)));
+                offer.setQuotaNoAdjust(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST)));
+                offer.setRateGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_GRACE)));
+                offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
+                offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
+                offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+                offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
                 offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
                 offers.add(offer);
             }
@@ -76,10 +89,16 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_QUOTA,
                 OfferEntry.COLUMN_NAME_CREDIT_DATE,
                 OfferEntry.COLUMN_NAME_TCEA,
+                OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST,
+                OfferEntry.COLUMN_NAME_RATE_GRACE,
+                OfferEntry.COLUMN_NAME_RATE_PROCESS,
+                OfferEntry.COLUMN_NAME_MONTH_GRACE,
+                OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
 
-        String selection = OfferEntry.COLUMN_NAME_OFFER_TYPE_ID + " LIKE ?";
+        String selection = OfferEntry.COLUMN_NAME_OFFER_TYPE_ID + " LIKE ? ";
         String[] selectionArgs = { offerTypeId };
 
         Cursor c = db.query(OfferEntry.OFFER_TABLE_NAME, projection, selection, selectionArgs, null, null, null);
@@ -91,6 +110,12 @@ public class OffersLocalDataSource implements OffersDataSource {
                 offer.setQuota(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA)));
                 offer.setCreditDate(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDIT_DATE)));
                 offer.setTcea(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_TCEA)));
+                offer.setQuotaNoAdjust(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST)));
+                offer.setRateGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_GRACE)));
+                offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
+                offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
+                offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+                offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
                 offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
                 offers.add(offer);
             }
@@ -112,6 +137,12 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_QUOTA,
                 OfferEntry.COLUMN_NAME_CREDIT_DATE,
                 OfferEntry.COLUMN_NAME_TCEA,
+                OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST,
+                OfferEntry.COLUMN_NAME_RATE_GRACE,
+                OfferEntry.COLUMN_NAME_RATE_PROCESS,
+                OfferEntry.COLUMN_NAME_MONTH_GRACE,
+                OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
 
@@ -129,6 +160,12 @@ public class OffersLocalDataSource implements OffersDataSource {
             offer.setQuota(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA)));
             offer.setCreditDate(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDIT_DATE)));
             offer.setTcea(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_TCEA)));
+            offer.setQuotaNoAdjust(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST)));
+            offer.setRateGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_GRACE)));
+            offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
+            offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
+            offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+            offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
             offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
         }
 
@@ -149,6 +186,12 @@ public class OffersLocalDataSource implements OffersDataSource {
         values.put(OfferEntry.COLUMN_NAME_QUOTA, offer.getQuota());
         values.put(OfferEntry.COLUMN_NAME_CREDIT_DATE, offer.getCreditDate());
         values.put(OfferEntry.COLUMN_NAME_TCEA, offer.getTcea());
+        values.put(OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST, offer.getQuotaNoAdjust());
+        values.put(OfferEntry.COLUMN_NAME_RATE_GRACE, offer.getRateGrace());
+        values.put(OfferEntry.COLUMN_NAME_RATE_PROCESS, offer.getRateProcess());
+        values.put(OfferEntry.COLUMN_NAME_MONTH_GRACE, offer.getMonthGrace());
+        values.put(OfferEntry.COLUMN_NAME_DAYS_PROCESS, offer.getDaysProcess());
+        values.put(OfferEntry.COLUMN_NAME_CREDITED, offer.isCredited());
         values.put(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID, offer.getOfferTypeId());
 
         db.insert(OfferEntry.OFFER_TABLE_NAME, null, values);
@@ -157,7 +200,17 @@ public class OffersLocalDataSource implements OffersDataSource {
 
     @Override
     public void creditedOffer(Offer offer) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put(NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_CREDITED, true);
+
+        String selection = OfferEntry.COLUMN_NAME_OFFER_ID + " LIKE ?";
+        String[] selectionArgs = { offer.getId() };
+
+        db.update(OfferEntry.OFFER_TABLE_NAME, values, selection, selectionArgs);
+
+        db.close();
     }
 
     @Override
@@ -188,34 +241,15 @@ public class OffersLocalDataSource implements OffersDataSource {
 
     @Override
     public int numOffers() {
-        List<Offer> offers = new ArrayList<>();
+        int size = 0;
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor c = db.query(OfferEntry.OFFER_TABLE_NAME, null, null, null, null, null, null);
 
-        String[] projection = {
-                OfferEntry.COLUMN_NAME_OFFER_ID,
-                OfferEntry.COLUMN_NAME_QUOTA,
-                OfferEntry.COLUMN_NAME_CREDIT_DATE,
-                OfferEntry.COLUMN_NAME_TCEA,
-                OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
-        };
-
-        Cursor c = db.query(OfferEntry.OFFER_TABLE_NAME, projection, null, null, null, null, null);
-
-        if (c != null && c.getCount() > 0) {
-            while (c.moveToNext()) {
-                Offer offer = new Offer();
-                offer.setId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_ID)));
-                offer.setQuota(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_QUOTA)));
-                offer.setCreditDate(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDIT_DATE)));
-                offer.setTcea(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_TCEA)));
-                offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
-                offers.add(offer);
-            }
-        }
-
+        if (c != null && c.getCount() > 0) while (c.moveToNext()) size++;
         if (c != null) c.close();
         db.close();
 
-        return offers.size();
+        return size;
     }
 }

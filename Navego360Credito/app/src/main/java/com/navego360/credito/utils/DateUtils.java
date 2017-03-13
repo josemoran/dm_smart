@@ -14,6 +14,7 @@ public class DateUtils {
     public static String formatDate2 = "dd/MM/yyyy hh:mm a";
     public static String formatDate3 = "dd/MM/yyyy";
     public static String formatDate4 = "dd/MM/yy";
+    public static String formatDate5 = "yyyy-MM-dd";
 
     public static String fromCalendar(final Calendar calendar) {
         Date date = calendar.getTime();

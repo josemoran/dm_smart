@@ -1,6 +1,6 @@
 package com.navego360.credito.data.offertype;
 
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -43,10 +43,10 @@ public class OfferTypesRepository implements OfferTypesDataSource {
             return;
         }
 
-        if (mCacheIsDirty) {
+        if (!mCacheIsDirty) {
             // If the cache is dirty we need to fetch new data from the network.
-            getOfferTypesFromRemoteDataSource(callback);
-        } else {
+//            getOfferTypesFromRemoteDataSource(callback);
+//        } else {
             // Query the local storage if available. If not, query the network.
             mOfferTypesLocalDataSource.getOfferTypes(new LoadOfferTypesCallback() {
                 @Override
@@ -57,7 +57,8 @@ public class OfferTypesRepository implements OfferTypesDataSource {
 
                 @Override
                 public void onDataNotAvailable() {
-                    getOfferTypesFromRemoteDataSource(callback);
+                    callback.onDataNotAvailable();
+//                    getOfferTypesFromRemoteDataSource(callback);
                 }
             });
         }
@@ -65,7 +66,7 @@ public class OfferTypesRepository implements OfferTypesDataSource {
 
     @Override
     public void saveOfferType(OfferType offer) {
-        mOfferTypesRemoteDataSource.saveOfferType(offer);
+//        mOfferTypesRemoteDataSource.saveOfferType(offer);
         mOfferTypesLocalDataSource.saveOfferType(offer);
 
         // Do in memory cache update to keep the app UI up to date
@@ -76,8 +77,27 @@ public class OfferTypesRepository implements OfferTypesDataSource {
     }
 
     @Override
+    public void blockNotCredited() {
+        mOfferTypesLocalDataSource.blockNotCredited();
+    }
+
+    @Override
+    public void blockAllExceptOfferType(String offerTypeId) {
+        OfferType offerType = getOfferTypeWithId(offerTypeId);
+        mOfferTypesLocalDataSource.blockAllExceptOfferType(offerTypeId);
+
+        offerType.setBlocked(false);
+
+        // Do in memory cache update to keep the app UI up to date
+        if (mCachedOfferTypes == null) {
+            mCachedOfferTypes = new LinkedHashMap<>();
+        }
+        mCachedOfferTypes.put(offerType.getId(), offerType);
+    }
+
+    @Override
     public void creditedOfferType(OfferType offer) {
-        mOfferTypesRemoteDataSource.creditedOfferType(offer);
+//        mOfferTypesRemoteDataSource.creditedOfferType(offer);
         mOfferTypesLocalDataSource.creditedOfferType(offer);
 
         offer.setCredited(true);
@@ -120,34 +140,30 @@ public class OfferTypesRepository implements OfferTypesDataSource {
 
             @Override
             public void onDataNotAvailable() {
-                mOfferTypesRemoteDataSource.getOfferType(offerTypeId, new GetOfferTypeCallback() {
-                    @Override
-                    public void onOfferTypeLoaded(OfferType offer) {
-                        // Do in memory cache update to keep the app UI up to date
-                        if (mCachedOfferTypes == null) {
-                            mCachedOfferTypes = new LinkedHashMap<>();
-                        }
-                        mCachedOfferTypes.put(offer.getId(), offer);
-                        callback.onOfferTypeLoaded(offer);
-                    }
-
-                    @Override
-                    public void onDataNotAvailable() {
-                        callback.onDataNotAvailable();
-                    }
-                });
+//                mOfferTypesRemoteDataSource.getOfferType(offerTypeId, new GetOfferTypeCallback() {
+//                    @Override
+//                    public void onOfferTypeLoaded(OfferType offer) {
+//                        // Do in memory cache update to keep the app UI up to date
+//                        if (mCachedOfferTypes == null) {
+//                            mCachedOfferTypes = new LinkedHashMap<>();
+//                        }
+//                        mCachedOfferTypes.put(offer.getId(), offer);
+//                        callback.onOfferTypeLoaded(offer);
+//                    }
+//
+//                    @Override
+//                    public void onDataNotAvailable() {
+//                        callback.onDataNotAvailable();
+//                    }
+//                });
+                callback.onDataNotAvailable();
             }
         });
     }
 
     @Override
-    public void refreshOfferTypes() {
-        mCacheIsDirty = true;
-    }
-
-    @Override
     public void deleteAllOfferTypes() {
-        mOfferTypesRemoteDataSource.deleteAllOfferTypes();
+//        mOfferTypesRemoteDataSource.deleteAllOfferTypes();
         mOfferTypesLocalDataSource.deleteAllOfferTypes();
 
         if (mCachedOfferTypes == null) {
@@ -158,7 +174,7 @@ public class OfferTypesRepository implements OfferTypesDataSource {
 
     @Override
     public void deleteOfferType(String offerId) {
-        mOfferTypesRemoteDataSource.deleteOfferType(offerId);
+//        mOfferTypesRemoteDataSource.deleteOfferType(offerId);
         mOfferTypesLocalDataSource.deleteOfferType(offerId);
 
         mCachedOfferTypes.remove(offerId);
@@ -169,21 +185,21 @@ public class OfferTypesRepository implements OfferTypesDataSource {
         return mOfferTypesLocalDataSource.numOfferTypes();
     }
 
-    private void getOfferTypesFromRemoteDataSource(final LoadOfferTypesCallback callback) {
-        mOfferTypesRemoteDataSource.getOfferTypes(new LoadOfferTypesCallback() {
-            @Override
-            public void onOfferTypesLoaded(List<OfferType> offers) {
-                refreshCache(offers);
-                refreshLocalDataSource(offers);
-                callback.onOfferTypesLoaded(new ArrayList<>(mCachedOfferTypes.values()));
-            }
-
-            @Override
-            public void onDataNotAvailable() {
-                callback.onDataNotAvailable();
-            }
-        });
-    }
+//    private void getOfferTypesFromRemoteDataSource(final LoadOfferTypesCallback callback) {
+//        mOfferTypesRemoteDataSource.getOfferTypes(new LoadOfferTypesCallback() {
+//            @Override
+//            public void onOfferTypesLoaded(List<OfferType> offers) {
+//                refreshCache(offers);
+//                refreshLocalDataSource(offers);
+//                callback.onOfferTypesLoaded(new ArrayList<>(mCachedOfferTypes.values()));
+//            }
+//
+//            @Override
+//            public void onDataNotAvailable() {
+//                callback.onDataNotAvailable();
+//            }
+//        });
+//    }
 
     private void refreshCache(List<OfferType> offerTypes) {
         if (mCachedOfferTypes == null) {

@@ -1,7 +1,7 @@
 package com.navego360.credito.data.offertype.remote;
 
 import com.navego360.credito.data.offertype.OfferTypesDataSource;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -43,6 +43,16 @@ public class OfferTypesRemoteDataSource implements OfferTypesDataSource {
     }
 
     @Override
+    public void blockNotCredited() {
+
+    }
+
+    @Override
+    public void blockAllExceptOfferType(String offerTypeId) {
+
+    }
+
+    @Override
     public void creditedOfferType(OfferType offerType) {
         offerType.setCredited(true);
         OFFER_TYPES_SERVICE_DATA.put(offerType.getId(), offerType);
@@ -50,11 +60,6 @@ public class OfferTypesRemoteDataSource implements OfferTypesDataSource {
 
     @Override
     public void creditedOfferType(String offerId) {
-
-    }
-
-    @Override
-    public void refreshOfferTypes() {
 
     }
 

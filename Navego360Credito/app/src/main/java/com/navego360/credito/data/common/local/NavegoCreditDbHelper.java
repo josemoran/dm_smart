@@ -39,6 +39,12 @@ public class NavegoCreditDbHelper extends SQLiteOpenHelper {
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_QUOTA + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_CREDIT_DATE + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_TCEA + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_QUOTA_NOT_ADJUST + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_RATE_GRACE + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_RATE_PROCESS + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_MONTH_GRACE + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_DAYS_PROCESS + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_CREDITED + INTEGER_TYPE  + COMMA_SEP +
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_OFFER_TYPE_ID + TEXT_TYPE +
                     " )";
 
@@ -51,7 +57,14 @@ public class NavegoCreditDbHelper extends SQLiteOpenHelper {
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_EXPIRED_DATE + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_USER_EMAIL + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_LAST_AMOUNT + TEXT_TYPE + COMMA_SEP +
-                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_BORROW_CAPACITY + TEXT_TYPE +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_MAX_OFFER + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_REAL_AMOUNT + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_BORROW_CAPACITY + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_DISBURSEMENT + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_APPROVED_DATE + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_DISCOUNT + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_CREDITED + INTEGER_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_SERVICE_ID + INTEGER_TYPE +
                     " )";
 
     public NavegoCreditDbHelper(Context context) {

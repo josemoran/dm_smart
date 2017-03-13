@@ -9,15 +9,15 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.navego360.credito.R;
-import com.navego360.credito.interfaces.OfferCreditDialogListener;
+import com.navego360.credito.interfaces.OfferDialogsListener;
 
-public class ConfirmDialog extends Dialog {
+public class  ConfirmDialog extends Dialog {
 
-    private OfferCreditDialogListener listener;
+    private OfferDialogsListener listener;
 
     public ConfirmDialog(Context context, Fragment fragment){
         super(context);
-        listener = (OfferCreditDialogListener) fragment;
+        listener = (OfferDialogsListener) fragment;
     }
 
     @Override

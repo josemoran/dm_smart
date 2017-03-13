@@ -25,7 +25,6 @@ public class CreditDialog extends Dialog {
 
     private void setUpActions(){
         ImageView closeBtn = (ImageView) findViewById(R.id.close_btn);
-
         closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

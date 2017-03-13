@@ -1,6 +1,6 @@
 package com.navego360.credito.ui.offertypes;
 
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.ui.common.BasePresenter;
 import com.navego360.credito.ui.common.BaseView;
 import com.navego360.credito.variables.OffersFilterType;
@@ -24,7 +24,7 @@ public interface OfferTypesContract {
     interface Presenter extends BasePresenter {
         void result(int requestCode, int resultCode);
         void loadUserInfo();
-        void loadOffersType(boolean forceUpdate);
+        void loadOffersType();
         void showOfferTypesInfo(String client, String date);
         void openOfferTypeDetails(OfferType requestOfferType);
         void setFiltering(OffersFilterType requestType);

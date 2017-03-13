@@ -2,53 +2,238 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:baselineAligned="false"
-    android:layout_marginLeft="8dp"
-    android:paddingTop="9dp"
-    android:paddingBottom="9dp">
+    android:baselineAligned="false">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option_btn"
-        android:buttonTint="@drawable/drawable_radio_button"
-        tools:targetApi="lollipop" />
-
+    <!-- Oferta info -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_gravity="center_vertical"
-        android:weightSum="8">
+        android:paddingLeft="8dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp">
 
-        <TextView
-            android:layout_width="0dp"
+        <RadioButton
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:id="@+id/credit_date_value_view"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/dimen18"/>
+            android:id="@+id/option_btn"
+            android:buttonTint="@drawable/drawable_radio_button"
+            tools:targetApi="lollipop" />
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:id="@+id/amount_value_view"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/dimen18"/>
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:weightSum="8">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:id="@+id/tcea_value_view"
-            android:textColor="@color/textColor3"
-            android:textSize="@dimen/dimen18"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:id="@+id/credit_date_value_view"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/dimen18"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:id="@+id/amount_value_view"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/dimen18"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:id="@+id/tcea_value_view"
+                android:textColor="@color/textColor3"
+                android:textSize="@dimen/dimen18"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <!-- Oferta info detallado -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/offer_info_detail_view"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="209dp"
+            android:id="@+id/container_offer_info_view"
+            android:orientation="horizontal"
+            android:background="@drawable/background_offer_detail"
+            android:baselineAligned="false"
+            android:paddingTop="21dp">
+
+            <!-- Columna 1-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <!-- Cuota sin ajuste -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/quota_not_adjust_label_view"
+                        android:text="@string/quota_not_adjust_label"
+                        android:textSize="@dimen/dimen12"
+                        android:textColor="@color/textColor1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/quota_not_adjust_value_view"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimen18"
+                        android:textColor="@color/textColor1"/>
+
+
+                </LinearLayout>
+
+                <!-- Intereses de gracias -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="21dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rate_grace_label_view"
+                        android:text="@string/rate_grace_label"
+                        android:textSize="@dimen/dimen12"
+                        android:textColor="@color/textColor1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rate_grace_value_view"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimen18"
+                        android:textColor="@color/textColor1"/>
+
+
+                </LinearLayout>
+
+                <!-- Intereses en proceso -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rate_process_label_view"
+                        android:text="@string/rate_process_label"
+                        android:textSize="@dimen/dimen12"
+                        android:textColor="@color/textColor1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rate_process_value_view"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimen18"
+                        android:textColor="@color/textColor1"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Columna 2-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <!-- Meses de gracia -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/month_grace_label_view"
+                        android:text="@string/month_grace_label"
+                        android:textSize="@dimen/dimen12"
+                        android:textColor="@color/textColor1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/month_grace_value_view"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimen18"
+                        android:textColor="@color/textColor1"/>
+
+
+                </LinearLayout>
+
+                <!-- Dias en proceso -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginTop="21dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/process_day_label_view"
+                        android:text="@string/process_days_label"
+                        android:textSize="@dimen/dimen12"
+                        android:textColor="@color/textColor1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/process_day_value_view"
+                        android:layout_marginTop="4dp"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/dimen18"
+                        android:textColor="@color/textColor1"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

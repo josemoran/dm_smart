@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.navego360.credito"
     android:sharedUserId="com.navego.shared">
 
@@ -24,6 +25,11 @@
         </activity>
         <activity android:name=".ui.offertypes.OfferTypesActivity"/>
         <activity android:name=".ui.offers.OffersActivity" />
+        <activity
+            android:name=".ui.ExitActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:autoRemoveFromRecents="true"
+            tools:ignore="UnusedAttribute" />
     </application>
 
 </manifest>

@@ -1,7 +1,7 @@
 package com.navego360.credito.data.offer.remote;
 
 import com.navego360.credito.data.offer.OffersDataSource;
-import com.navego360.credito.models.Offer;
+import com.navego360.credito.models.credito.Offer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

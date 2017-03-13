@@ -1,6 +1,6 @@
 package com.navego360.credito.data.offer;
 
-import com.navego360.credito.models.Offer;
+import com.navego360.credito.models.credito.Offer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -41,10 +41,10 @@ public class OffersRepository implements OffersDataSource {
             return;
         }
 
-        if (mCacheIsDirty) {
+        if (!mCacheIsDirty) {
             // If the cache is dirty we need to fetch new data from the network.
-            getOffersFromRemoteDataSource(callback);
-        } else {
+//            getOffersFromRemoteDataSource(callback);
+//        } else {
             // Query the local storage if available. If not, query the network.
             mOffersLocalDataSource.getOffers(new LoadOffersCallback() {
                 @Override
@@ -55,7 +55,8 @@ public class OffersRepository implements OffersDataSource {
 
                 @Override
                 public void onDataNotAvailable() {
-                    getOffersFromRemoteDataSource(callback);
+                    callback.onDataNotAvailable();
+//                    getOffersFromRemoteDataSource(callback);
                 }
             });
         }
@@ -64,15 +65,15 @@ public class OffersRepository implements OffersDataSource {
     @Override
     public void getOffers(final String offerTypeId, final LoadOffersCallback callback) {
         // Respond immediately with cache if available and not dirty
-        if (mCachedOffers != null && !mCacheIsDirty) {
-            callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
-            return;
-        }
+//        if (mCachedOffers != null && !mCacheIsDirty) {
+//            callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
+//            return;
+//        }
 
-        if (mCacheIsDirty) {
+        if (!mCacheIsDirty) {
             // If the cache is dirty we need to fetch new data from the network.
-            getOffersFromRemoteDataSource(offerTypeId, callback);
-        } else {
+//            getOffersFromRemoteDataSource(offerTypeId, callback);
+//        } else {
             // Query the local storage if available. If not, query the network.
             mOffersLocalDataSource.getOffers(offerTypeId, new LoadOffersCallback() {
                 @Override
@@ -83,7 +84,8 @@ public class OffersRepository implements OffersDataSource {
 
                 @Override
                 public void onDataNotAvailable() {
-                    getOffersFromRemoteDataSource(offerTypeId, callback);
+                    callback.onDataNotAvailable();
+//                    getOffersFromRemoteDataSource(offerTypeId, callback);
                 }
             });
         }
@@ -91,7 +93,7 @@ public class OffersRepository implements OffersDataSource {
 
     @Override
     public void saveOffer(Offer offer) {
-        mOffersRemoteDataSource.saveOffer(offer);
+//        mOffersRemoteDataSource.saveOffer(offer);
         mOffersLocalDataSource.saveOffer(offer);
 
         // Do in memory cache update to keep the app UI up to date
@@ -103,10 +105,10 @@ public class OffersRepository implements OffersDataSource {
 
     @Override
     public void creditedOffer(Offer offer) {
-        mOffersRemoteDataSource.creditedOffer(offer);
+//        mOffersRemoteDataSource.creditedOffer(offer);
         mOffersLocalDataSource.creditedOffer(offer);
 
-//        offer.setCredited(true);
+        offer.setCredited(true);
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedOffers == null) {
@@ -146,22 +148,23 @@ public class OffersRepository implements OffersDataSource {
 
             @Override
             public void onDataNotAvailable() {
-                mOffersRemoteDataSource.getOffer(offerId, new GetOfferCallback() {
-                    @Override
-                    public void onOfferLoaded(Offer offer) {
-                        // Do in memory cache update to keep the app UI up to date
-                        if (mCachedOffers == null) {
-                            mCachedOffers = new LinkedHashMap<>();
-                        }
-                        mCachedOffers.put(offer.getId(), offer);
-                        callback.onOfferLoaded(offer);
-                    }
-
-                    @Override
-                    public void onDataNotAvailable() {
-                        callback.onDataNotAvailable();
-                    }
-                });
+//                mOffersRemoteDataSource.getOffer(offerId, new GetOfferCallback() {
+//                    @Override
+//                    public void onOfferLoaded(Offer offer) {
+//                        // Do in memory cache update to keep the app UI up to date
+//                        if (mCachedOffers == null) {
+//                            mCachedOffers = new LinkedHashMap<>();
+//                        }
+//                        mCachedOffers.put(offer.getId(), offer);
+//                        callback.onOfferLoaded(offer);
+//                    }
+//
+//                    @Override
+//                    public void onDataNotAvailable() {
+//                        callback.onDataNotAvailable();
+//                    }
+//                });
+                callback.onDataNotAvailable();
             }
         });
     }
@@ -173,7 +176,7 @@ public class OffersRepository implements OffersDataSource {
 
     @Override
     public void deleteAllOffers() {
-        mOffersRemoteDataSource.deleteAllOffers();
+//        mOffersRemoteDataSource.deleteAllOffers();
         mOffersLocalDataSource.deleteAllOffers();
 
         if (mCachedOffers == null) {
@@ -184,7 +187,7 @@ public class OffersRepository implements OffersDataSource {
 
     @Override
     public void deleteOffer(String offerId) {
-        mOffersRemoteDataSource.deleteOffer(offerId);
+//        mOffersRemoteDataSource.deleteOffer(offerId);
         mOffersLocalDataSource.deleteOffer(offerId);
 
         mCachedOffers.remove(offerId);
@@ -195,37 +198,37 @@ public class OffersRepository implements OffersDataSource {
         return mOffersLocalDataSource.numOffers();
     }
 
-    private void getOffersFromRemoteDataSource(final LoadOffersCallback callback) {
-        mOffersRemoteDataSource.getOffers(new LoadOffersCallback() {
-            @Override
-            public void onOffersLoaded(List<Offer> offers) {
-                refreshCache(offers);
-                refreshLocalDataSource(offers);
-                callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
-            }
+//    private void getOffersFromRemoteDataSource(final LoadOffersCallback callback) {
+//        mOffersRemoteDataSource.getOffers(new LoadOffersCallback() {
+//            @Override
+//            public void onOffersLoaded(List<Offer> offers) {
+//                refreshCache(offers);
+//                refreshLocalDataSource(offers);
+//                callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
+//            }
+//
+//            @Override
+//            public void onDataNotAvailable() {
+//                callback.onDataNotAvailable();
+//            }
+//        });
+//    }
 
-            @Override
-            public void onDataNotAvailable() {
-                callback.onDataNotAvailable();
-            }
-        });
-    }
-
-    private void getOffersFromRemoteDataSource(String offerTypeId, final LoadOffersCallback callback) {
-        mOffersRemoteDataSource.getOffers(offerTypeId, new LoadOffersCallback() {
-            @Override
-            public void onOffersLoaded(List<Offer> offers) {
-                refreshCache(offers);
-                refreshLocalDataSource(offers);
-                callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
-            }
-
-            @Override
-            public void onDataNotAvailable() {
-                callback.onDataNotAvailable();
-            }
-        });
-    }
+//    private void getOffersFromRemoteDataSource(String offerTypeId, final LoadOffersCallback callback) {
+//        mOffersRemoteDataSource.getOffers(offerTypeId, new LoadOffersCallback() {
+//            @Override
+//            public void onOffersLoaded(List<Offer> offers) {
+//                refreshCache(offers);
+//                refreshLocalDataSource(offers);
+//                callback.onOffersLoaded(new ArrayList<>(mCachedOffers.values()));
+//            }
+//
+//            @Override
+//            public void onDataNotAvailable() {
+//                callback.onDataNotAvailable();
+//            }
+//        });
+//    }
 
     private void refreshCache(List<Offer> offers) {
         if (mCachedOffers == null) {

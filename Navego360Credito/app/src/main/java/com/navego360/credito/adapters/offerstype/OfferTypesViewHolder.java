@@ -2,6 +2,7 @@ package com.navego360.credito.adapters.offerstype;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 import com.navego360.credito.R;
 import com.navego360.credito.interfaces.OfferTypeItemListener;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.utils.DecimalFormatUtils;
 import com.navego360.credito.utils.ViewUtils;
 import com.navego360.credito.widgets.ToastMessage;
@@ -110,7 +111,14 @@ public class OfferTypesViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void blockValues(){
-        int blockedColor = ContextCompat.getColor(mContext, R.color.lineColor);
+        int blockedColor = 0;
+
+        if(Build.VERSION.SDK_INT >= 23) {
+            ContextCompat.getColor(mContext, R.color.lineColor);
+        } else {
+            mContext.getResources().getColor(R.color.lineColor);
+        }
+
         TextView mAmountLabelView = (TextView) container.findViewById(R.id.amount_label_view);
         mAmountLabelView.setTextColor(blockedColor);
         mAmountView.setTextColor(blockedColor);

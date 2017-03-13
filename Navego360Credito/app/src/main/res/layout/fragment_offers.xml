@@ -1,10 +1,12 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.offers.OffersFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.offers.OffersFragment"
-    android:focusableInTouchMode="true">
+    android:id="@+id/offer_view"
+    android:focusableInTouchMode="true"
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,16 +23,27 @@
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginTop="14dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
+
+                <!-- Credito otorgado -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/offer_credited_view"
+                    android:text="@string/offer_credited"
+                    android:textColor="@color/offerCredited"
+                    android:textSize="@dimen/dimen18"
+                    android:textStyle="bold"
+                    android:layout_marginTop="19dp"
+                    android:visibility="gone"/>
 
                 <!-- Docente -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -95,6 +108,139 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/textColor3"
                         android:textSize="@dimen/dimen18" />
+
+                </LinearLayout>
+
+                <!-- Fecha de aprobacion -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="19dp">
+
+                    <TextView
+                        android:id="@+id/approved_date_label_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/approved_date_label"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/approved_date_value_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor1"
+                        android:textSize="@dimen/dimen16"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="@dimen/space_text"/>
+
+                </LinearLayout>
+
+                <!-- Datos de tasas -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp"
+                    android:baselineAligned="false">
+
+                    <!-- Labels -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5">
+
+                        <!-- TEA -->
+                        <TextView
+                            android:id="@+id/tea_label_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tea_label"
+                            android:textColor="@color/textColor1"
+                            android:textSize="@dimen/dimen16"
+                            android:textStyle="bold" />
+
+                        <!-- Flat -->
+                        <TextView
+                            android:id="@+id/flat_label_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/flat_2_label"
+                            android:textColor="@color/textColor1"
+                            android:textSize="@dimen/dimen16"
+                            android:textStyle="bold"
+                            android:layout_marginTop="7dp"/>
+
+                        <!-- Desgravamen -->
+                        <TextView
+                            android:id="@+id/disgrace_label_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/disgrace_label"
+                            android:textColor="@color/textColor1"
+                            android:textSize="@dimen/dimen16"
+                            android:textStyle="bold"
+                            android:layout_marginTop="7dp"/>
+
+                        <!-- Forma de Descuento -->
+                        <TextView
+                            android:id="@+id/discount_label_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/discount_label"
+                            android:textColor="@color/textColor1"
+                            android:textSize="@dimen/dimen16"
+                            android:textStyle="bold"
+                            android:layout_marginTop="7dp"/>
+
+                    </LinearLayout>
+
+                    <!-- Valores -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.5">
+
+                        <!-- TEA -->
+                        <TextView
+                            android:id="@+id/tea_value_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textColor4"
+                            android:textSize="@dimen/dimen16"/>
+
+                        <!-- Flat -->
+                        <TextView
+                            android:id="@+id/flat_value_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textColor4"
+                            android:textSize="@dimen/dimen16"
+                            android:layout_marginTop="7dp"/>
+
+                        <!-- Desgravamen -->
+                        <TextView
+                            android:id="@+id/disgrace_value_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textColor4"
+                            android:textSize="@dimen/dimen16"
+                            android:layout_marginTop="7dp"/>
+
+                        <!-- Forma de Descuento -->
+                        <TextView
+                            android:id="@+id/discount_value_view"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/textColor4"
+                            android:textSize="@dimen/dimen16"
+                            android:layout_marginTop="7dp"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -167,8 +313,7 @@
                         android:id="@+id/offers_list_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="9dp"
-                        android:layout_marginBottom="9dp"/>
+                        android:paddingTop="9dp" />
 
                 </LinearLayout>
 
@@ -327,6 +472,94 @@
                 android:background="@drawable/button_credit_drawable"
                 android:textColor="@color/white"
                 android:enabled="false"/>
+
+            <!--  Opciones -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/credited_buttons_view"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="17dp"
+                    android:baselineAligned="false">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:id="@+id/print_btn"
+                        android:background="@color/buttonColor2"
+                        android:layout_marginRight="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:src="@drawable/ic_impresora"
+                                android:layout_marginRight="15dp"/>
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/print_button"
+                                android:textSize="@dimen/dimen15"
+                                android:textColor="@color/white"
+                                android:textAllCaps="true"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:id="@+id/send_mail_btn"
+                        android:background="@color/buttonColor2"
+                        android:layout_marginLeft="10dp" >
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_centerInParent="true">
+
+                            <ImageView
+                                android:layout_width="18dp"
+                                android:layout_height="14dp"
+                                android:src="@drawable/ic_sobre"
+                                android:layout_marginRight="5dp"
+                                android:layout_gravity="center_vertical"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/send_email"
+                                android:textSize="@dimen/dimen15"
+                                android:textColor="@color/white"
+                                android:textAllCaps="true"
+                                android:layout_gravity="center_vertical"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -4,11 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.navego360.credito.data.common.local.NavegoCreditDbHelper;
 import com.navego360.credito.data.offertype.OfferTypesDataSource;
 import com.navego360.credito.data.common.local.NavegoCreditPersistenceContract.OfferTypeEntry;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,8 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
 
         if (c != null) c.close();
         db.close();
+
+        Log.e("LOCAL","GET offer type | num: " + offerTypes.size());
 
         if (offerTypes.isEmpty()) callback.onDataNotAvailable();
         else callback.onOfferTypesLoaded(offerTypes);
@@ -153,6 +156,50 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
     }
 
     @Override
+    public void blockNotCredited() {
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                OfferTypeEntry.COLUMN_NAME_OFFER_TYPE_ID,
+                OfferTypeEntry.COLUMN_NAME_CREDITED
+        };
+
+        String selection = OfferTypeEntry.COLUMN_NAME_CREDITED + " LIKE ?";
+        String[] selectionArgs = { "1" };
+
+        Cursor c = db.query(OfferTypeEntry.OFFER_TYPE_TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+
+        OfferType offerType = null;
+
+        if (c != null && c.getCount() > 0) {
+            c.moveToFirst();
+            offerType = new OfferType();
+            offerType.setId(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_OFFER_TYPE_ID)));
+            offerType.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_CREDITED)) == 1);
+        }
+
+        if (c != null) c.close();
+        db.close();
+
+        if(offerType != null) blockAllExceptOfferType(offerType.getOfferType());
+    }
+
+    @Override
+    public void blockAllExceptOfferType(String offerTypeId) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(OfferTypeEntry.COLUMN_NAME_BLOCKED, true);
+
+        String selection = OfferTypeEntry.COLUMN_NAME_OFFER_TYPE_ID + " NOT LIKE ?";
+        String[] selectionArgs = { offerTypeId };
+
+        db.update(OfferTypeEntry.OFFER_TYPE_TABLE_NAME, values, selection, selectionArgs);
+
+        db.close();
+    }
+
+    @Override
     public void creditedOfferType(OfferType offerType) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -169,11 +216,6 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
 
     @Override
     public void creditedOfferType(String offerId) {
-
-    }
-
-    @Override
-    public void refreshOfferTypes() {
 
     }
 
@@ -195,49 +237,16 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
 
     @Override
     public int numOfferTypes() {
-        List<OfferType> offerTypes = new ArrayList<>();
+        int size = 0;
+
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        Cursor c = db.query(OfferTypeEntry.OFFER_TYPE_TABLE_NAME, null, null, null, null, null, null);
 
-        String[] projection = {
-                OfferTypeEntry.COLUMN_NAME_OFFER_TYPE_ID,
-                OfferTypeEntry.COLUMN_NAME_CREDIT_TYPE,
-                OfferTypeEntry.COLUMN_NAME_AMOUNT,
-                OfferTypeEntry.COLUMN_NAME_QUOTA,
-                OfferTypeEntry.COLUMN_NAME_CREDIT_DATE,
-                OfferTypeEntry.COLUMN_NAME_TCEA,
-                OfferTypeEntry.COLUMN_NAME_RATE,
-                OfferTypeEntry.COLUMN_NAME_FLAT,
-                OfferTypeEntry.COLUMN_NAME_DISGRACE,
-                OfferTypeEntry.COLUMN_NAME_OFFER_TYPE,
-                OfferTypeEntry.COLUMN_NAME_BLOCKED,
-                OfferTypeEntry.COLUMN_NAME_CREDITED
-        };
-
-        Cursor c = db.query(OfferTypeEntry.OFFER_TYPE_TABLE_NAME, projection, null, null, null, null, null);
-
-        if (c != null && c.getCount() > 0) {
-            while (c.moveToNext()) {
-                OfferType offerType = new OfferType();
-                offerType.setId(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_OFFER_TYPE_ID)));
-                offerType.setCreditType(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_CREDIT_TYPE)));
-                offerType.setAmount(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_AMOUNT)));
-                offerType.setQuota(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_QUOTA)));
-                offerType.setCreditDate(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_CREDIT_DATE)));
-                offerType.setTcea(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_TCEA)));
-                offerType.setRate(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_RATE)));
-                offerType.setFlat(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_FLAT)));
-                offerType.setDisgrace(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_DISGRACE)));
-                offerType.setOfferType(c.getString(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_OFFER_TYPE)));
-                offerType.setBlocked(c.getInt(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_BLOCKED)) == 1);
-                offerType.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferTypeEntry.COLUMN_NAME_CREDITED)) == 1);
-                offerTypes.add(offerType);
-            }
-        }
-
+        if (c != null && c.getCount() > 0) while (c.moveToNext()) size++;
         if (c != null) c.close();
         db.close();
 
-        return offerTypes.size();
+        return size;
     }
 
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.navego360.credito.R;
 import com.navego360.credito.interfaces.OfferItemCheckListener;
 import com.navego360.credito.interfaces.OfferItemListener;
-import com.navego360.credito.models.Offer;
+import com.navego360.credito.models.credito.Offer;
 import com.navego360.credito.widgets.ToastMessage;
 
 import java.util.List;
@@ -22,8 +22,8 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
     private OfferItemListener mItemListener;
 
     private String mMaxAmount = "0";
+    private boolean offerTypeCredited = false;
 
-    private int lastPosition;
     private int actualPosition = -1;
 
     public OffersAdapter(Context context, List<Offer> offers,
@@ -45,11 +45,12 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
     @Override
     public OffersViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mActivity.getLayoutInflater().inflate(R.layout.offer_row, parent, false);
-        return new OffersViewHolder(view, mItemListener, mMaxAmount, mActivity);
+        return new OffersViewHolder(view, mItemListener, mMaxAmount, offerTypeCredited, mActivity);
     }
 
     @Override
     public void onBindViewHolder(OffersViewHolder holder, int position) {
+        holder.setOfferTypeCredited(offerTypeCredited);
         holder.setOffer(mOffers.get(position));
         holder.setItemCheckListener(this);
     }
@@ -61,7 +62,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
 
     @Override
     public void selectOffer(int position, Offer offer) {
-        lastPosition = actualPosition;
+        int lastPosition = actualPosition;
         actualPosition = position;
         if(lastPosition != actualPosition && lastPosition != -1) notifyItemChanged(lastPosition);
     }
@@ -73,6 +74,11 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
 
     public void setMaxAmount(String maxAmount){
         mMaxAmount = maxAmount;
+        notifyDataSetChanged();
+    }
+
+    public void setOfferTypeCredited(boolean credited){
+        offerTypeCredited = credited;
         notifyDataSetChanged();
     }
 }

@@ -3,9 +3,14 @@ package com.navego360.credito.utils;
 import android.content.Context;
 
 import com.navego360.credito.R;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 
 public class OfferTypeUtils {
+
+    public static String TYPE_CREDITOS = "DM_CREDITOS";
+    public static String TYPE_PLAZA = "DM_PLAZA";
+    public static String TYPE_HOTELES = "DM_HOTELES";
+    public static String TYPE_VIVIENDA = "DM_VIVIENDA";
 
     public static String getOfferTypeText(Context context, OfferType offerTypeObJ){
         String text = "";

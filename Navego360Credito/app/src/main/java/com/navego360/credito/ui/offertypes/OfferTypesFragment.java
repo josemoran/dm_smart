@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.navego360.credito.R;
 import com.navego360.credito.adapters.offerstype.OfferTypesAdapter;
 import com.navego360.credito.interfaces.OfferTypeItemListener;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.ui.offers.OffersActivity;
 import com.navego360.credito.variables.IntentKeys.OfferDetail;
 import com.navego360.credito.widgets.ToastMessage;
@@ -68,7 +68,6 @@ public class OfferTypesFragment extends Fragment implements OfferTypesContract.V
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_offers_type, container, false);
-        setHasOptionsMenu(true);
         initUI(root);
         return root;
     }

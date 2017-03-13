@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.navego360.credito.R;
 import com.navego360.credito.interfaces.OfferTypeItemListener;
-import com.navego360.credito.models.OfferType;
+import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.utils.DateUtils;
 
 import java.text.ParseException;
@@ -38,7 +38,7 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesViewHolder
     public void setExpirationDate(String expirationDate){
         if(expirationDate != null){
             try {
-                Date expDate = DateUtils.convertDate(expirationDate, DateUtils.formatDate3);
+                Date expDate = DateUtils.convertDate(expirationDate, DateUtils.formatDate5);
                 Date now = new Date();
                 if(expDate.before(now)){
                     allBlocked = true;

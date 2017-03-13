@@ -1,7 +1,7 @@
 package com.navego360.credito.data.userinfo.repository;
 
 import com.navego360.credito.data.userinfo.UserInfoDataSource;
-import com.navego360.credito.models.UserInfo;
+import com.navego360.credito.models.credito.UserInfo;
 
 public class UserInfoRemoteDataSource implements UserInfoDataSource {
 
@@ -17,6 +17,11 @@ public class UserInfoRemoteDataSource implements UserInfoDataSource {
             INSTANCE = new UserInfoRemoteDataSource();
         }
         return INSTANCE;
+    }
+
+    @Override
+    public void saveDisbursementOption(UserInfo userInfo, String optionIndex) {
+
     }
 
     @Override
