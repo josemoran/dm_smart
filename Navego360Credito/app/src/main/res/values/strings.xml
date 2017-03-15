@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Navego 360 Credito</string>
+    <!--<string name="app_name">Navego 360 Credito</string>-->
+    <string name="app_name">DM Smart</string>
 
     <!-- SPLASH -->
     <string name="invalid_open_app">Debe abrir la aplicación desde Navego360</string>
+    <string name="invalid_user_info_updated">Para poder ver las ofertas deberá actualizar los datos del docente</string>
     <string name="close_dialog_btn">Entendido</string>
 
     <!-- TIPOS DE OFERTAS -->
@@ -59,7 +61,7 @@
     <string name="print_button">Imprimir</string>
     <string name="send_email_button">Enviar correo</string>
 
-    <string name="invalid_select_offer">No puede seleccionar esta oferta</string>
+    <string name="invalid_select_offer">No puede seleccionar esta oferta debido a que la cuota supera su capacidad de endeudamiento.</string>
 
     <string name="edit_offer">Editar</string>
     <string name="save_offer">Guardar</string>

@@ -96,6 +96,7 @@ public class OfferTypesViewHolder extends RecyclerView.ViewHolder {
         mDisgraceView.setText(disgraceFormat + mContext.getString(R.string.percentage_symbol));
 
         if(mOfferType.isBlocked()){
+            container.setEnabled(false);
             blockValues();
         }
     }
@@ -105,18 +106,19 @@ public class OfferTypesViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 if(!mAllBlocked) mItemListener.onOfferTypeClick(mOfferType);
+                else if(mOfferType.isCredited()) mItemListener.onOfferTypeClick(mOfferType);
                 else ToastMessage.showMessage(mContext, mContext.getString(R.string.expire_offers_error));
             }
         });
     }
 
     private void blockValues(){
-        int blockedColor = 0;
+        int blockedColor;
 
         if(Build.VERSION.SDK_INT >= 23) {
-            ContextCompat.getColor(mContext, R.color.lineColor);
+            blockedColor = ContextCompat.getColor(mContext, R.color.lineColor);
         } else {
-            mContext.getResources().getColor(R.color.lineColor);
+            blockedColor = mContext.getResources().getColor(R.color.lineColor);
         }
 
         TextView mAmountLabelView = (TextView) container.findViewById(R.id.amount_label_view);

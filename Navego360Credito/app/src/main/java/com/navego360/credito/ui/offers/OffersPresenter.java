@@ -169,6 +169,14 @@ public class OffersPresenter implements OffersContract.Presenter {
         mOffersView.showTea("");
         mOffersView.showFlat(offerType.getFlat());
         mOffersView.showDisgrace(offerType.getDisgrace());
+        mOffersView.showAmount(offerType.getAmount());
+
+        double realAmount = Double.parseDouble(offerType.getAmount());
+        if(mUserInfo.getLastAmount() != null && !mUserInfo.getLastAmount().equals("")) {
+            realAmount = realAmount - Double.parseDouble(mUserInfo.getLastAmount());
+        }
+        mOffersView.showRealAmount(String.valueOf(realAmount));
+
         mOffersRepository.getOffers(mOfferTypeId, new OffersDataSource.LoadOffersCallback() {
             @Override
             public void onOffersLoaded(List<Offer> offers) {
@@ -212,9 +220,9 @@ public class OffersPresenter implements OffersContract.Presenter {
         mOffersView.showApprovedDate(userInfo.getApprovedDate());
         mOffersView.showDiscount(userInfo.getDiscount());
         mOffersView.showBorrowCapacity(userInfo.getBorrowCapacity());
-        mOffersView.showAmount(userInfo.getMaxOfferAmount());
+//        mOffersView.showAmount(userInfo.getMaxOfferAmount());
         mOffersView.showLastAmount(userInfo.getLastAmount());
-        mOffersView.showRealAmount(userInfo.getRealAmount());
+//        mOffersView.showRealAmount(userInfo.getRealAmount());
         mOffersView.setDisbursementOption(userInfo.getDisbursement());
     }
 

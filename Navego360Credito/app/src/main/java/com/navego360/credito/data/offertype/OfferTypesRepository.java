@@ -38,10 +38,10 @@ public class OfferTypesRepository implements OfferTypesDataSource {
     public void getOfferTypes(final LoadOfferTypesCallback callback) {
 
         // Respond immediately with cache if available and not dirty
-        if (mCachedOfferTypes != null && !mCacheIsDirty) {
-            callback.onOfferTypesLoaded(new ArrayList<>(mCachedOfferTypes.values()));
-            return;
-        }
+//        if (mCachedOfferTypes != null && !mCacheIsDirty) {
+//            callback.onOfferTypesLoaded(new ArrayList<>(mCachedOfferTypes.values()));
+//            return;
+//        }
 
         if (!mCacheIsDirty) {
             // If the cache is dirty we need to fetch new data from the network.

@@ -123,9 +123,18 @@ public class BundleUtils {
         List<FormData> formDataListOffer = getFormData(context, formTypeOffer, serviceId);
         FormData formDataInfo = formDataListInfo.get(0);
         FormData formDataOffer = formDataListOffer.get(0);
+        Log.e("USER INFO","form data datos " + formDataInfo.toString());
         List<FormAnswer> formAnswerList1 = getFormAnswer(context, formDataInfo.getFormDataId(), serviceId);
         List<FormAnswer> formAnswerList2 = getFormAnswer(context, formDataOffer.getFormDataId(), serviceId);
         return generateUserInfo(formAnswerList1, formAnswerList2, formDataOffer.getFormDataId(), serviceId);
+    }
+
+    public static boolean isUpdatedFormData(Context context, Bundle bundle){
+        int formTypeUserData = bundle.getInt("formUserDetail");//formDataId
+        int serviceId = bundle.getInt("serviceId");//serviceId
+        List<FormData> formDataListInfo = getFormData(context, formTypeUserData, serviceId);
+        FormData formDataInfo = formDataListInfo.get(0);
+        return formDataInfo.getOperation() == 2;
     }
 
 }

@@ -24,6 +24,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
     private String mMaxAmount = "0";
     private boolean offerTypeCredited = false;
 
+    private int lastPosition;
     private int actualPosition = -1;
 
     public OffersAdapter(Context context, List<Offer> offers,
@@ -50,8 +51,10 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
 
     @Override
     public void onBindViewHolder(OffersViewHolder holder, int position) {
+        Offer offer = mOffers.get(position);
+        if(actualPosition != -1 && position == actualPosition) offer.setCredited(true);
         holder.setOfferTypeCredited(offerTypeCredited);
-        holder.setOffer(mOffers.get(position));
+        holder.setOffer(offer);
         holder.setItemCheckListener(this);
     }
 
@@ -62,7 +65,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
 
     @Override
     public void selectOffer(int position, Offer offer) {
-        int lastPosition = actualPosition;
+        lastPosition = actualPosition;
         actualPosition = position;
         if(lastPosition != actualPosition && lastPosition != -1) notifyItemChanged(lastPosition);
     }

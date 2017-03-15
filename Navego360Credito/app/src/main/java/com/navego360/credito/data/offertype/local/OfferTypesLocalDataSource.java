@@ -181,7 +181,11 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
         if (c != null) c.close();
         db.close();
 
-        if(offerType != null) blockAllExceptOfferType(offerType.getOfferType());
+        if(offerType != null) {
+            Log.e("OFFERTYPE","Bloquear ofertas sin CREDITO");
+            Log.e("OFFERTYPE","Ofertas sin bloqueo " + offerType.getId());
+            blockAllExceptOfferType(offerType.getId());
+        }
     }
 
     @Override

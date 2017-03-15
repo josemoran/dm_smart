@@ -7,13 +7,8 @@ import com.navego360.credito.models.credito.OfferType;
 
 public class OfferTypeUtils {
 
-    public static String TYPE_CREDITOS = "DM_CREDITOS";
-    public static String TYPE_PLAZA = "DM_PLAZA";
-    public static String TYPE_HOTELES = "DM_HOTELES";
-    public static String TYPE_VIVIENDA = "DM_VIVIENDA";
-
     public static String getOfferTypeText(Context context, OfferType offerTypeObJ){
-        String text = "";
+        String text = context.getString(R.string.creditos_label);
         String offerType = offerTypeObJ.getOfferType();
         switch (offerType){
             case "DM_CREDITOS":
@@ -33,22 +28,22 @@ public class OfferTypeUtils {
     }
 
     public static String getOfferTypeColor(Context context, OfferType offerTypeObJ){
-        String color = "";
-        String offerType = offerTypeObJ.getOfferType();
-        switch (offerType){
-            case "DM_CREDITOS":
-                color = context.getString(R.color.creditoColor);
-                break;
-            case "DM_PLAZA":
-                color = context.getString(R.color.plazaColor);
-                break;
-            case "DM_HOTELES":
-                color = context.getString(R.color.hotelesColor);
-                break;
-            case "DM_VIVIENDA":
-                color = context.getString(R.color.viviendaColor);
-                break;
-        }
+        String color = context.getString(R.color.creditoColor);
+//        String offerType = offerTypeObJ.getOfferType();
+//        switch (offerType){
+//            case "DM_CREDITOS":
+//                color = context.getString(R.color.creditoColor);
+//                break;
+//            case "DM_PLAZA":
+//                color = context.getString(R.color.plazaColor);
+//                break;
+//            case "DM_HOTELES":
+//                color = context.getString(R.color.hotelesColor);
+//                break;
+//            case "DM_VIVIENDA":
+//                color = context.getString(R.color.viviendaColor);
+//                break;
+//        }
         return color;
     }
 }

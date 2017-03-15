@@ -304,7 +304,7 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
         } else if(option.equals(DEPOSITO_OPTION)) {
             optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.deposit_option);
         }
-        if(option != null) optionButton.setChecked(true);
+        if(optionButton != null) optionButton.setChecked(true);
     }
 
     @Override
