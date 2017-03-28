@@ -89,9 +89,10 @@ public class OfferTypesFragment extends Fragment implements OfferTypesContract.V
     }
 
     @Override
-    public void showOfferTypes(List<OfferType> offers, String expirationDate) {
+    public void showOfferTypes(List<OfferType> offers, String expirationDate, String creditType) {
         mListAdapter.replaceData(offers);
         mListAdapter.setExpirationDate(expirationDate);
+        mListAdapter.setCreditType(creditType);
 
         mOffersListView.setVisibility(View.VISIBLE);
         mNoOffersView.setVisibility(View.GONE);

@@ -37,6 +37,10 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_DAYS_PROCESS = "daysProcess";
         public static final String COLUMN_NAME_CREDITED = "credited";
         public static final String COLUMN_NAME_OFFER_TYPE_ID = "offerTypeId";
+        public static final String COLUMN_NAME_ID_DMM_CAMPANIA = "idDmmCampaign";
+        public static final String COLUMN_NAME_ID_PRO_PROSPECTO = "idProProspect";
+        public static final String COLUMN_NAME_ID_PRO_OFERTA = "idProOffer";
+        public static final String COLUMN_NAME_ID_PRO_OFERTA_DETALLE = "idProOfferDetail";
     }
 
     public static abstract class UserInfoEntry implements BaseColumns {
@@ -53,6 +57,16 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_DISBURSEMENT = "disbursement";
         public static final String COLUMN_NAME_APPROVED_DATE = "approvedDate";
         public static final String COLUMN_NAME_DISCOUNT = "discount";
+        public static final String COLUMN_NAME_TCEA = "tcea";
+        public static final String COLUMN_NAME_TEA = "tea";
+        public static final String COLUMN_NAME_CREDIT_TYPE = "creditType";
+        public static final String COLUMN_NAME_LIST_DIS = "listDis";
+        public static final String COLUMN_NAME_ID_DMM_CAMPANIA = "idDmmCampaign";
+        public static final String COLUMN_NAME_ID_PRO_PROSPECTO = "idProProspect";
+        public static final String COLUMN_NAME_ID_PRO_OFERTA = "idProOffer";
+        public static final String COLUMN_NAME_ID_PRO_OFERTA_DETALLE = "idProOfferDetail";
+        public static final String COLUMN_NAME_FECHA_OTORGAMIENTO = "granteDate";
+        public static final String COLUMN_NAME_CODIGO_IMEI = "imeiCode";
         public static final String COLUMN_NAME_CREDITED = "credited";
         public static final String COLUMN_NAME_SERVICE_ID = "serviceId";
     }

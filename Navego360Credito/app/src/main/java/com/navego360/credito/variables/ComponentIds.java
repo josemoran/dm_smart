@@ -16,6 +16,16 @@ public class ComponentIds {
         public static String OFERTA_CREDITO_TCEA = "11";
         public static String OFERTA_FORMA_DESCUENTO = "12";
         public static String OFERTA_FECHA_APROBACION = "13";
+        public static String OFERTA_TIPO_CREDITO = "14";
+        public static String OFERTA_TCEA = "15";
+        public static String OFERTA_TEA = "16";
+        public static String OFERTA_FORMA_DESEMBOLSO_LISTA = "17";
+        public static String OFERTA_ID_DMM_CAMPANIA = "18";
+        public static String OFERTA_ID_PRO_PROSPECTO = "19";
+        public static String OFERTA_ID_PRO_OFERTA = "20";
+        public static String OFERTA_ID_PRO_OFERTA_DETALLE = "21";
+        public static String OFERTA_FECHA_OTORGAMIENTO = "22";
+        public static String OFERTA_CODIGO_IMEI = "23";
     }
 
     public static class OfferDetailData {
@@ -33,16 +43,13 @@ public class ComponentIds {
         public static String OFERTA_DETALLE_INTERES_GRACIA = "12";
         public static String OFERTA_DETALLE_DIAS_PROCESO = "13";
         public static String OFERTA_DETALLE_INTERES_PROCESO = "14";
+        public static String OFERTA_DETALLE_ID_DMM_CAMPANIA = "15";
+        public static String OFERTA_DETALLE_ID_PRO_PROSPECTO = "16";
+        public static String OFERTA_DETALLE_ID_PRO_OFERTA = "17";
+        public static String OFERTA_DETALLE_ID_PRO_OFERTA_DETALLE = "18";
     }
 
     public static class UserInfoData {
-        public static String INFO_ASOCIACION = "10";
-        public static String INFO_CODIGO = "11";
-        public static String INFO_ENDEUDAMIENTO = "23";
-        public static String INFO_INGRESO = "24";
-        public static String INFO_DESCUENTO_LEY = "25";
-        public static String INFO_DESCUENTO_TERCEROS = "26";
-        public static String INFO_DESCUENTO_DM = "27";
         public static String INFO_DNI = "30";
         public static String INFO_APELLIDO_PATERNO = "31";
         public static String INFO_APELLIDO_MATERNO = "32";

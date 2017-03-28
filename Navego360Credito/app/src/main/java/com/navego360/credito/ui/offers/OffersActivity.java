@@ -1,9 +1,6 @@
 package com.navego360.credito.ui.offers;
 
-import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,16 +10,10 @@ import android.widget.TextView;
 
 import com.navego360.credito.R;
 import com.navego360.credito.data.common.local.CreditoRepository;
-import com.navego360.credito.data.offer.OffersDataSource;
-import com.navego360.credito.data.offer.OffersRepository;
-import com.navego360.credito.data.offer.local.OffersLocalDataSource;
-import com.navego360.credito.data.offer.remote.OffersRemoteDataSource;
-import com.navego360.credito.data.offertype.OfferTypesDataSource;
-import com.navego360.credito.data.offertype.OfferTypesRepository;
-import com.navego360.credito.data.offertype.local.OfferTypesLocalDataSource;
-import com.navego360.credito.data.offertype.remote.OfferTypesRemoteDataSource;
 import com.navego360.credito.utils.ActivityUtils;
+import com.navego360.credito.widgets.ToastMessage;
 
+import static com.navego360.credito.utils.ActivityUtils.closeApp;
 import static com.navego360.credito.variables.IntentKeys.OfferDetail.EXTRA_OFFER_TYPE_ID;
 
 public class OffersActivity extends AppCompatActivity {
@@ -32,21 +23,27 @@ public class OffersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
 
-        String offerTypeId = getIntent().getStringExtra(EXTRA_OFFER_TYPE_ID);
+        try {
+            String offerTypeId = getIntent().getStringExtra(EXTRA_OFFER_TYPE_ID);
 
-        setUpActionBar();
+            setUpActionBar();
 
-        OffersFragment offersFragment = (OffersFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.contentFrame);
+            OffersFragment offersFragment = (OffersFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.contentFrame);
 
-        if (offersFragment == null) {
-            offersFragment = OffersFragment.newInstance(offerTypeId);
-            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), offersFragment, R.id.contentFrame);
+            if (offersFragment == null) {
+                offersFragment = OffersFragment.newInstance(offerTypeId);
+                ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), offersFragment, R.id.contentFrame);
+            }
+
+            // Create the presenter
+            CreditoRepository repository = CreditoRepository.getInstance(this);
+            new OffersPresenter(this, offerTypeId, repository, offersFragment);
+        } catch (Exception e){
+            String message = "Message: " + e.getMessage() + "\nLocalized Message" + e.getLocalizedMessage();
+            ToastMessage.showMessage(this, message);
+            closeApp(this);
         }
-
-        // Create the presenter
-        CreditoRepository repository = CreditoRepository.getInstance(this);
-        new OffersPresenter(this, offerTypeId, repository, offersFragment);
     }
 
     private void setUpActionBar(){

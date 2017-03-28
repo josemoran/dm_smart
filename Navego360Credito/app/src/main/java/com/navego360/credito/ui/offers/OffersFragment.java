@@ -29,10 +29,12 @@ import com.navego360.credito.dialogs.SendEmailDialog;
 import com.navego360.credito.interfaces.OfferDialogsListener;
 import com.navego360.credito.interfaces.OfferItemListener;
 import com.navego360.credito.models.credito.Offer;
+import com.navego360.credito.ui.ExitActivity;
 import com.navego360.credito.utils.DecimalFormatUtils;
 import com.navego360.credito.widgets.ToastMessage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.navego360.credito.variables.DisbursementOptions.BOVEDA_OPTION;
@@ -252,7 +254,7 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
 
     @Override
     public void showTea(String tea) {
-        if(!tea.equals("")) {
+        if(tea != null && !tea.equals("")) {
             String teaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(tea));
             mTeaView.setText(teaFormat + getContext().getString(R.string.percentage_symbol));
         }
@@ -304,7 +306,28 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
         } else if(option.equals(DEPOSITO_OPTION)) {
             optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.deposit_option);
         }
+        if (optionButton.getVisibility() == View.GONE) optionButton = null;
         if(optionButton != null) optionButton.setChecked(true);
+    }
+
+    @Override
+    public void setDisbursementEnabled(String list) {
+        if(list != null) {
+            RadioButton optionButton;
+            List<String> listEnableOptions = Arrays.asList(list.split(","));
+            for (String option : listEnableOptions) {
+                if (option.equals(BOVEDA_OPTION)) {
+                    optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.checkout_option);
+                    optionButton.setVisibility(View.VISIBLE);
+                } else if (option.equals(GERENCIA_OPTION)) {
+                    optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.check_option);
+                    optionButton.setVisibility(View.VISIBLE);
+                } else if (option.equals(DEPOSITO_OPTION)) {
+                    optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.deposit_option);
+                    optionButton.setVisibility(View.VISIBLE);
+                }
+            }
+        }
     }
 
     @Override
@@ -384,7 +407,7 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
         mPresenter.generateCredit(getDisbursementOptionIndex(), mOffer);
         mPresenter.start();
 
-        CreditDialog dialog = new CreditDialog(getContext());
+        CreditDialog dialog = new CreditDialog(getContext(), this);
         dialog.show();
     }
 
@@ -414,6 +437,11 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
     @Override
     public void sendEmail(String email) {
         // mPresenter.sendEmailCredit(getDisbursementOption(), mOffer, email);
+    }
+
+    @Override
+    public void closeApp() {
+        ExitActivity.exitApplication(getContext());
     }
 
 }

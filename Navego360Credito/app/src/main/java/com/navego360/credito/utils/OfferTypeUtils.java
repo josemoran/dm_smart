@@ -9,21 +9,21 @@ public class OfferTypeUtils {
 
     public static String getOfferTypeText(Context context, OfferType offerTypeObJ){
         String text = context.getString(R.string.creditos_label);
-        String offerType = offerTypeObJ.getOfferType();
-        switch (offerType){
-            case "DM_CREDITOS":
-                text = context.getString(R.string.creditos_label);
-                break;
-            case "DM_PLAZA":
-                text = context.getString(R.string.plaza_label);
-                break;
-            case "DM_HOTELES":
-                text = context.getString(R.string.hoteles_label);
-                break;
-            case "DM_VIVIENDA":
-                text = context.getString(R.string.vivienda_label);
-                break;
-        }
+//        String offerType = offerTypeObJ.getOfferType();
+//        switch (offerType){
+//            case "DM_CREDITOS":
+//                text = context.getString(R.string.creditos_label);
+//                break;
+//            case "DM_PLAZA":
+//                text = context.getString(R.string.plaza_label);
+//                break;
+//            case "DM_HOTELES":
+//                text = context.getString(R.string.hoteles_label);
+//                break;
+//            case "DM_VIVIENDA":
+//                text = context.getString(R.string.vivienda_label);
+//                break;
+//        }
         return text;
     }
 

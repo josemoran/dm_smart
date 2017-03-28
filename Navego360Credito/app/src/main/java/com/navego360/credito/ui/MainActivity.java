@@ -1,14 +1,10 @@
 package com.navego360.credito.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -16,8 +12,9 @@ import android.view.Window;
 import com.navego360.credito.R;
 import com.navego360.credito.data.common.local.CreditoRepository;
 import com.navego360.credito.ui.offertypes.OfferTypesActivity;
+import com.navego360.credito.utils.ActivityUtils;
 import com.navego360.credito.utils.BundleUtils;
-import com.navego360.credito.utils.PermissioUtils;
+import com.navego360.credito.widgets.ToastMessage;
 
 import static com.navego360.credito.variables.Constants.SPLASH_SCREEN_DELAY;
 
@@ -31,23 +28,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
 
         mContext = this;
 
-        if(getIntent().getExtras() != null) fromNavego = true;
-        if(fromNavego) fromNavego = getIntent().getExtras().containsKey("from_navego");
-        if(fromNavego) fromNavego = getIntent().getExtras().getBoolean("from_navego");
+        try {
+            getSupportActionBar().hide();
 
-        if(fromNavego) validateUserDataForm();
-        else showCloseAppDialog();
-    }
+            if (getIntent().getExtras() != null) fromNavego = true;
+            if (fromNavego) fromNavego = getIntent().getExtras().containsKey("from_navego");
+            if (fromNavego) fromNavego = getIntent().getExtras().getBoolean("from_navego");
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (requestCode == PermissioUtils.PROVIDER_PERMISSION) showMain();
+            if (fromNavego) validateUserDataForm();
+            else showCloseAppDialog();
+        } catch (Exception e){
+            e.printStackTrace();
+            String message = "Message: " + e.getMessage() + "\nLocalized Message" + e.getLocalizedMessage();
+            ToastMessage.showMessage(mContext, message);
+            closeApp();
         }
     }
 
@@ -91,17 +88,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Cerrar aplicacion
-    private void closeApp(){
-        ExitActivity.exitApplication(mContext);
-    }
-
-    // Permisos
-    private void validateProviderPermission(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(!PermissioUtils.canAccessProvider(mContext)){
-                PermissioUtils.requestPermissionsProvider((Activity) mContext);
-            } else showMain();
-        } else showMain();
+    public void closeApp(){
+        ActivityUtils.closeApp(mContext);
     }
 
     // Alerta en caso no ha editado el formulario de actualizacion de datos

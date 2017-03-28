@@ -22,6 +22,7 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesViewHolder
     private OfferTypeItemListener mItemListener;
 
     private boolean allBlocked = false;
+    private String mCreditType = "";
 
     public OfferTypesAdapter(Context context, List<OfferType> offersType,
                              OfferTypeItemListener itemListener) {
@@ -50,6 +51,10 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesViewHolder
         }
     }
 
+    public void setCreditType(String creditType){
+        mCreditType = creditType;
+    }
+
     private void setList(List<OfferType> offersType) {
         mOffersType = offersType;
     }
@@ -62,6 +67,8 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesViewHolder
 
     @Override
     public void onBindViewHolder(OfferTypesViewHolder holder, int position) {
+        OfferType offerType = mOffersType.get(position);
+        offerType.setCreditType(mCreditType);
         holder.setOfferType(mOffersType.get(position));
     }
 

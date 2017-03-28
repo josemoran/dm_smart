@@ -48,6 +48,10 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_RATE_PROCESS,
                 OfferEntry.COLUMN_NAME_MONTH_GRACE,
                 OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA,
+                OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE,
                 OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
@@ -66,6 +70,10 @@ public class OffersLocalDataSource implements OffersDataSource {
                 offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
                 offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
                 offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+                offer.setIdDmmCampaign(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA)));
+                offer.setIdProProspect(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO)));
+                offer.setIdProOffer(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA)));
+                offer.setIdProOfferDetail(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE)));
                 offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
                 offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
                 offers.add(offer);
@@ -94,6 +102,10 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_RATE_PROCESS,
                 OfferEntry.COLUMN_NAME_MONTH_GRACE,
                 OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA,
+                OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE,
                 OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
@@ -115,6 +127,10 @@ public class OffersLocalDataSource implements OffersDataSource {
                 offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
                 offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
                 offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+                offer.setIdDmmCampaign(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA)));
+                offer.setIdProProspect(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO)));
+                offer.setIdProOffer(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA)));
+                offer.setIdProOfferDetail(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE)));
                 offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
                 offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
                 offers.add(offer);
@@ -142,6 +158,10 @@ public class OffersLocalDataSource implements OffersDataSource {
                 OfferEntry.COLUMN_NAME_RATE_PROCESS,
                 OfferEntry.COLUMN_NAME_MONTH_GRACE,
                 OfferEntry.COLUMN_NAME_DAYS_PROCESS,
+                OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA,
+                OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA,
+                OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE,
                 OfferEntry.COLUMN_NAME_CREDITED,
                 OfferEntry.COLUMN_NAME_OFFER_TYPE_ID
         };
@@ -165,6 +185,10 @@ public class OffersLocalDataSource implements OffersDataSource {
             offer.setRateProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_RATE_PROCESS)));
             offer.setMonthGrace(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_MONTH_GRACE)));
             offer.setDaysProcess(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_DAYS_PROCESS)));
+            offer.setIdDmmCampaign(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA)));
+            offer.setIdProProspect(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO)));
+            offer.setIdProOffer(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA)));
+            offer.setIdProOfferDetail(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE)));
             offer.setCredited(c.getInt(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_CREDITED)) == 1);
             offer.setOfferTypeId(c.getString(c.getColumnIndexOrThrow(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID)));
         }
@@ -191,6 +215,10 @@ public class OffersLocalDataSource implements OffersDataSource {
         values.put(OfferEntry.COLUMN_NAME_RATE_PROCESS, offer.getRateProcess());
         values.put(OfferEntry.COLUMN_NAME_MONTH_GRACE, offer.getMonthGrace());
         values.put(OfferEntry.COLUMN_NAME_DAYS_PROCESS, offer.getDaysProcess());
+        values.put(OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA, offer.getIdDmmCampaign());
+        values.put(OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO, offer.getIdProProspect());
+        values.put(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA, offer.getIdProOffer());
+        values.put(OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE, offer.getIdProOfferDetail());
         values.put(OfferEntry.COLUMN_NAME_CREDITED, offer.isCredited());
         values.put(OfferEntry.COLUMN_NAME_OFFER_TYPE_ID, offer.getOfferTypeId());
 

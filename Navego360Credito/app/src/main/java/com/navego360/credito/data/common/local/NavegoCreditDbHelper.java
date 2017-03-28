@@ -45,7 +45,11 @@ public class NavegoCreditDbHelper extends SQLiteOpenHelper {
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_MONTH_GRACE + TEXT_TYPE  + COMMA_SEP +
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_DAYS_PROCESS + TEXT_TYPE  + COMMA_SEP +
                     NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_CREDITED + INTEGER_TYPE  + COMMA_SEP +
-                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_OFFER_TYPE_ID + TEXT_TYPE +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_OFFER_TYPE_ID + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_ID_DMM_CAMPANIA + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_ID_PRO_PROSPECTO + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_ID_PRO_OFERTA + TEXT_TYPE  + COMMA_SEP +
+                    NavegoCreditPersistenceContract.OfferEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE + TEXT_TYPE +
                     " )";
 
     private static final String SQL_CREATE_USER_INFO =
@@ -63,6 +67,16 @@ public class NavegoCreditDbHelper extends SQLiteOpenHelper {
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_DISBURSEMENT + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_APPROVED_DATE + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_DISCOUNT + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_CREDIT_TYPE+ TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_TCEA + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_TEA + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_LIST_DIS + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_ID_DMM_CAMPANIA + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_ID_PRO_PROSPECTO + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_FECHA_OTORGAMIENTO + TEXT_TYPE + COMMA_SEP +
+                    NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_CODIGO_IMEI + TEXT_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_CREDITED + INTEGER_TYPE + COMMA_SEP +
                     NavegoCreditPersistenceContract.UserInfoEntry.COLUMN_NAME_SERVICE_ID + INTEGER_TYPE +
                     " )";

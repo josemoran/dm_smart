@@ -10,7 +10,7 @@ import java.util.List;
 public interface OfferTypesContract {
 
     interface View extends BaseView<Presenter> {
-        void showOfferTypes(List<OfferType> offerTypes, String expirationDate);
+        void showOfferTypes(List<OfferType> offerTypes, String expirationDate, String creditType);
         void showClientName(String name);
         void showOfferDate(String date);
         void showOfferTypeDetailsUi(String offerId);
@@ -25,7 +25,7 @@ public interface OfferTypesContract {
         void result(int requestCode, int resultCode);
         void loadUserInfo();
         void loadOffersType();
-        void showOfferTypesInfo(String client, String date);
+        void showOfferTypesInfo(String client, String date, String creditType);
         void openOfferTypeDetails(OfferType requestOfferType);
         void setFiltering(OffersFilterType requestType);
         OffersFilterType getFiltering();

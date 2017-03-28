@@ -13,6 +13,11 @@ public class Offer {
     private String daysProcess;
     private boolean credited;
 
+    private String idDmmCampaign;
+    private String idProProspect;
+    private String idProOffer;
+    private String idProOfferDetail;
+
     private String offerTypeId;
 
     /* Get and Set */
@@ -84,6 +89,34 @@ public class Offer {
     }
     public void setDaysProcess(String daysProcess) {
         this.daysProcess = daysProcess;
+    }
+
+    public String getIdDmmCampaign() {
+        return idDmmCampaign;
+    }
+    public void setIdDmmCampaign(String idDmmCampaign) {
+        this.idDmmCampaign = idDmmCampaign;
+    }
+
+    public String getIdProProspect() {
+        return idProProspect;
+    }
+    public void setIdProProspect(String idProProspect) {
+        this.idProProspect = idProProspect;
+    }
+
+    public String getIdProOffer() {
+        return idProOffer;
+    }
+    public void setIdProOffer(String idProOffer) {
+        this.idProOffer = idProOffer;
+    }
+
+    public String getIdProOfferDetail() {
+        return idProOfferDetail;
+    }
+    public void setIdProOfferDetail(String idProOfferDetail) {
+        this.idProOfferDetail = idProOfferDetail;
     }
 
     public boolean isCredited() {

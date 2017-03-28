@@ -14,6 +14,19 @@ public class UserInfo {
     private String approvedDate; //Fecha de aprobacion
     private String discount; // Forma de descuento
 
+    private String tcea;//TCEA
+    private String tea;//TEA
+    private String creditType;//Tipo de credito
+    private String listDis;// Lista de opciones de desembolso
+
+    private String idDmmCampaign;
+    private String idProProspect;
+    private String idProOffer;
+    private String idProOfferDetail;
+
+    private String grantDate;
+    private String imeiCode;
+
     private int serviceId; // Id de servicio
 
     private boolean credited;
@@ -117,4 +130,75 @@ public class UserInfo {
     public void setServiceId(int serviceId) {
         this.serviceId = serviceId;
     }
+
+    public String getTcea() {
+        return tcea;
+    }
+    public void setTcea(String tcea) {
+        this.tcea = tcea;
+    }
+
+    public String getTea() {
+        return tea;
+    }
+    public void setTea(String tea) {
+        this.tea = tea;
+    }
+
+    public String getCreditType() {
+        return creditType;
+    }
+    public void setCreditType(String creditType) {
+        this.creditType = creditType;
+    }
+
+    public String getListDis() {
+        return listDis;
+    }
+    public void setListDis(String listDis) {
+        this.listDis = listDis;
+    }
+
+    public String getIdDmmCampaign() {
+        return idDmmCampaign;
+    }
+    public void setIdDmmCampaign(String idDmmCampaign) {
+        this.idDmmCampaign = idDmmCampaign;
+    }
+
+    public String getIdProProspect() {
+        return idProProspect;
+    }
+    public void setIdProProspect(String idProProspect) {
+        this.idProProspect = idProProspect;
+    }
+
+    public String getIdProOffer() {
+        return idProOffer;
+    }
+    public void setIdProOffer(String idProOffer) {
+        this.idProOffer = idProOffer;
+    }
+
+    public String getIdProOfferDetail() {
+        return idProOfferDetail;
+    }
+    public void setIdProOfferDetail(String idProOfferDetail) {
+        this.idProOfferDetail = idProOfferDetail;
+    }
+
+    public String getGrantDate() {
+        return grantDate;
+    }
+    public void setGrantDate(String grantDate) {
+        this.grantDate = grantDate;
+    }
+
+    public String getImeiCode() {
+        return imeiCode;
+    }
+    public void setImeiCode(String imeiCode) {
+        this.imeiCode = imeiCode;
+    }
+
 }

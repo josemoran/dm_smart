@@ -30,11 +30,15 @@ public class UserInfoLocalDataSource implements UserInfoDataSource {
 
 
     @Override
-    public void saveDisbursementOption(UserInfo userInfo, String optionIndex) {
+    public void saveUserData(UserInfo userInfo, String optionIndex, String grantDate,
+                             String idProOfferDetail, String imei) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(UserInfoEntry.COLUMN_NAME_DISBURSEMENT, optionIndex);
+        values.put(UserInfoEntry.COLUMN_NAME_FECHA_OTORGAMIENTO, grantDate);
+        values.put(UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE, idProOfferDetail);
+        values.put(UserInfoEntry.COLUMN_NAME_CODIGO_IMEI, imei);
 
         String selection = UserInfoEntry.COLUMN_NAME_USER_INFO_ID + " LIKE ?";
         String[] selectionArgs = { userInfo.getId() };
@@ -61,6 +65,16 @@ public class UserInfoLocalDataSource implements UserInfoDataSource {
                 UserInfoEntry.COLUMN_NAME_DISBURSEMENT,
                 UserInfoEntry.COLUMN_NAME_APPROVED_DATE,
                 UserInfoEntry.COLUMN_NAME_DISCOUNT,
+                UserInfoEntry.COLUMN_NAME_CREDIT_TYPE,
+                UserInfoEntry.COLUMN_NAME_TCEA,
+                UserInfoEntry.COLUMN_NAME_TEA,
+                UserInfoEntry.COLUMN_NAME_LIST_DIS,
+                UserInfoEntry.COLUMN_NAME_ID_DMM_CAMPANIA,
+                UserInfoEntry.COLUMN_NAME_ID_PRO_PROSPECTO,
+                UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA,
+                UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE,
+                UserInfoEntry.COLUMN_NAME_FECHA_OTORGAMIENTO,
+                UserInfoEntry.COLUMN_NAME_CODIGO_IMEI,
                 UserInfoEntry.COLUMN_NAME_CREDITED,
                 UserInfoEntry.COLUMN_NAME_SERVICE_ID
         };
@@ -84,6 +98,16 @@ public class UserInfoLocalDataSource implements UserInfoDataSource {
             userInfo.setDisbursement(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_DISBURSEMENT)));
             userInfo.setApprovedDate(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_APPROVED_DATE)));
             userInfo.setDiscount(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_DISCOUNT)));
+            userInfo.setCreditType(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_CREDIT_TYPE)));
+            userInfo.setTcea(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_TCEA)));
+            userInfo.setTea(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_TEA)));
+            userInfo.setListDis(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_LIST_DIS)));
+            userInfo.setIdDmmCampaign(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_ID_DMM_CAMPANIA)));
+            userInfo.setIdProProspect(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_ID_PRO_PROSPECTO)));
+            userInfo.setIdProOffer(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA)));
+            userInfo.setIdProOfferDetail(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE)));
+            userInfo.setGrantDate(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_FECHA_OTORGAMIENTO)));
+            userInfo.setImeiCode(c.getString(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_CODIGO_IMEI)));
             userInfo.setCredited(c.getInt(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_CREDITED)) == 1);
             userInfo.setServiceId(c.getInt(c.getColumnIndexOrThrow(UserInfoEntry.COLUMN_NAME_SERVICE_ID)));
         }
@@ -113,6 +137,16 @@ public class UserInfoLocalDataSource implements UserInfoDataSource {
         values.put(UserInfoEntry.COLUMN_NAME_DISBURSEMENT, userInfo.getDisbursement());
         values.put(UserInfoEntry.COLUMN_NAME_APPROVED_DATE, userInfo.getApprovedDate());
         values.put(UserInfoEntry.COLUMN_NAME_DISCOUNT, userInfo.getDiscount());
+        values.put(UserInfoEntry.COLUMN_NAME_CREDIT_TYPE, userInfo.getCreditType());
+        values.put(UserInfoEntry.COLUMN_NAME_TCEA, userInfo.getTcea());
+        values.put(UserInfoEntry.COLUMN_NAME_TEA, userInfo.getTea());
+        values.put(UserInfoEntry.COLUMN_NAME_LIST_DIS, userInfo.getListDis());
+        values.put(UserInfoEntry.COLUMN_NAME_ID_DMM_CAMPANIA, userInfo.getIdDmmCampaign());
+        values.put(UserInfoEntry.COLUMN_NAME_ID_PRO_PROSPECTO, userInfo.getIdProProspect());
+        values.put(UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA, userInfo.getIdProOffer());
+        values.put(UserInfoEntry.COLUMN_NAME_ID_PRO_OFERTA_DETALLE, userInfo.getIdProOfferDetail());
+        values.put(UserInfoEntry.COLUMN_NAME_FECHA_OTORGAMIENTO, userInfo.getGrantDate());
+        values.put(UserInfoEntry.COLUMN_NAME_CODIGO_IMEI, userInfo.getImeiCode());
         values.put(UserInfoEntry.COLUMN_NAME_CREDITED, userInfo.isCredited());
         values.put(UserInfoEntry.COLUMN_NAME_SERVICE_ID, userInfo.getServiceId());
 

@@ -28,10 +28,14 @@ public class UserInfoRepository implements UserInfoDataSource {
     }
 
     @Override
-    public void saveDisbursementOption(UserInfo userInfo, String optionIndex) {
-        mUserInfoLocalDataSource.saveDisbursementOption(userInfo, optionIndex);
+    public void saveUserData(UserInfo userInfo, String optionIndex, String grantDate,
+                             String idProOfferDetail, String imei) {
+        mUserInfoLocalDataSource.saveUserData(userInfo, optionIndex, grantDate, idProOfferDetail, imei);
 
         userInfo.setDisbursement(optionIndex);
+        userInfo.setGrantDate(grantDate);
+        userInfo.setIdProOfferDetail(idProOfferDetail);
+        userInfo.setImeiCode(imei);
 
         // Do in memory cache update to keep the app UI up to date
         if (mCachedUserInfo == null) {

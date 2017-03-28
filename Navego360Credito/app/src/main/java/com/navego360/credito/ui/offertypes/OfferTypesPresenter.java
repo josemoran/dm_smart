@@ -25,6 +25,7 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     private final CreditoRepository mCreditoRepository;
 
     private String mExpirationDate;
+    private String mCreditType;
 
     public OfferTypesPresenter(CreditoRepository creditoRepository,
                                OfferTypesContract.View offerTypeView) {
@@ -54,7 +55,8 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
         userInfoRepository.getUserInfo(new UserInfoDataSource.GetUserInfoCallback() {
             @Override
             public void onUserInfoLoaded(UserInfo userInfo) {
-                showOfferTypesInfo(userInfo.getUserName(), userInfo.getExpiredDate());
+                showOfferTypesInfo(userInfo.getUserName(), userInfo.getExpiredDate(),
+                        userInfo.getCreditType());
             }
 
             @Override
@@ -100,7 +102,8 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     }
 
     @Override
-    public void showOfferTypesInfo(String client, String date) {
+    public void showOfferTypesInfo(String client, String date, String creditType) {
+        mCreditType = creditType;
         mExpirationDate = date;
         mOffersTypeView.showClientName(client);
         mOffersTypeView.showOfferDate(date);
@@ -123,7 +126,7 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
 
     private void processOffersType(List<OfferType> offerTypes) {
         if (offerTypes.isEmpty()) processEmptyOfferTypes();
-        else mOffersTypeView.showOfferTypes(offerTypes, mExpirationDate);
+        else mOffersTypeView.showOfferTypes(offerTypes, mExpirationDate, mCreditType);
     }
 
     private void processEmptyOfferTypes() {

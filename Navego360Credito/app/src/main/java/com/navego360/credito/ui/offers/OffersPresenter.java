@@ -16,6 +16,7 @@ import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.models.credito.UserInfo;
 import com.navego360.credito.utils.DateUtils;
 import com.navego360.credito.utils.DocumentUtils;
+import com.navego360.credito.utils.OfferUtils;
 import com.navego360.credito.utils.PrintUtils;
 import com.navego360.credito.utils.SaveNavegoUtils;
 import com.navego360.credito.widgets.ToastMessage;
@@ -125,7 +126,9 @@ public class OffersPresenter implements OffersContract.Presenter {
         mOffersRepository.creditedOffer(offer);
         mOfferTypesRepository.creditedOfferType(offer.getOfferTypeId());
         mOfferTypesRepository.blockAllExceptOfferType(offer.getOfferTypeId());
-        mCreditoRepository.getUserInfoRepository().saveDisbursementOption(mUserInfo, disbursementOption);
+        mCreditoRepository.getUserInfoRepository().saveUserData(mUserInfo, disbursementOption,
+                OfferUtils.getCreditDate(), offer.getIdProOfferDetail(),
+                OfferUtils.getDeviceImei(mContext));
 
         // Navego
         SaveNavegoUtils.saveOfferDetail(mContext, mUserInfo, offer);
@@ -165,8 +168,8 @@ public class OffersPresenter implements OffersContract.Presenter {
     }
 
     private void showOfferDetail(OfferType offerType){
-        mOffersView.showCreditType("");
-        mOffersView.showTea("");
+        mOffersView.showCreditType(mUserInfo.getCreditType());
+        mOffersView.showTea(mUserInfo.getTea());
         mOffersView.showFlat(offerType.getFlat());
         mOffersView.showDisgrace(offerType.getDisgrace());
         mOffersView.showAmount(offerType.getAmount());
@@ -220,9 +223,8 @@ public class OffersPresenter implements OffersContract.Presenter {
         mOffersView.showApprovedDate(userInfo.getApprovedDate());
         mOffersView.showDiscount(userInfo.getDiscount());
         mOffersView.showBorrowCapacity(userInfo.getBorrowCapacity());
-//        mOffersView.showAmount(userInfo.getMaxOfferAmount());
         mOffersView.showLastAmount(userInfo.getLastAmount());
-//        mOffersView.showRealAmount(userInfo.getRealAmount());
+        mOffersView.setDisbursementEnabled(userInfo.getListDis());
         mOffersView.setDisbursementOption(userInfo.getDisbursement());
     }
 

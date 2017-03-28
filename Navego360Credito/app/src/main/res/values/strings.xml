@@ -32,7 +32,7 @@
 
     <!-- OFERTAS -->
     <string name="offers_action_bar">Cálculo de crédito</string>
-    <string name="offer_credited">Credito otorgado - solo lectura</string>
+    <string name="offer_credited">Crédito otorgado - solo lectura</string>
     <string name="teacher_label">Docente</string>
     <string name="alert_message">Variaron Datos de la Boleta</string>
     <string name="max_offer_amount">Oferta máxima</string>
@@ -76,6 +76,7 @@
     <string name="cancel_text">Cancelar</string>
     <string name="close_btn">X</string>
     <string name="credit_approved">Crédito otorgado</string>
+    <string name="credit_approved_message">Recuerde cargar los documentos en Navego 360</string>
     <string name="send_email_title">Enviar correo a: </string>
     <string name="send_email_placeholder">email@example.com</string>
     <string name="send_buton">Enviar</string>

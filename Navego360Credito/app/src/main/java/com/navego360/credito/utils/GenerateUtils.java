@@ -40,6 +40,14 @@ public class GenerateUtils {
                 offer.setOfferTypeId(formAnswer.getAnswer());
             } else if (formAnswer.getComponentId().equals(ComponentIds.OfferDetailData.OFERTA_DETALLE_ESTADO)) {
                 offer.setCredited(formAnswer.getAnswer().equals("1"));
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferDetailData.OFERTA_DETALLE_ID_DMM_CAMPANIA)) {
+                offer.setIdDmmCampaign(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferDetailData.OFERTA_DETALLE_ID_PRO_PROSPECTO)) {
+                offer.setIdProProspect(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferDetailData.OFERTA_DETALLE_ID_PRO_OFERTA)) {
+                offer.setIdProOffer(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferDetailData.OFERTA_DETALLE_ID_PRO_OFERTA_DETALLE)) {
+                offer.setIdProOfferDetail(formAnswer.getAnswer());
             }
         }
         return offer;
@@ -122,8 +130,26 @@ public class GenerateUtils {
                 userInfo.setDiscount(formAnswer.getAnswer());
             } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_FECHA_APROBACION)) {
                 userInfo.setApprovedDate(formAnswer.getAnswer());
-            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_CREDITO_ESTADO)) {
-                userInfo.setCredited(formAnswer.getAnswer().equals("1"));
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_TIPO_CREDITO)) {
+                userInfo.setCreditType(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_TCEA)) {
+                userInfo.setTcea(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_TEA)) {
+                userInfo.setTea(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_FORMA_DESEMBOLSO_LISTA)) {
+                userInfo.setListDis(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_ID_DMM_CAMPANIA)) {
+                userInfo.setIdDmmCampaign(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_ID_PRO_PROSPECTO)) {
+                userInfo.setIdProProspect(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_ID_PRO_OFERTA)) {
+                userInfo.setIdProOffer(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_ID_PRO_OFERTA_DETALLE)) {
+                userInfo.setIdProOfferDetail(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_FECHA_OTORGAMIENTO)) {
+                userInfo.setGrantDate(formAnswer.getAnswer());
+            } else if (formAnswer.getComponentId().equals(ComponentIds.OfferData.OFERTA_CODIGO_IMEI)) {
+                userInfo.setImeiCode(formAnswer.getAnswer());
             }
         }
 

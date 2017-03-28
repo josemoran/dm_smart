@@ -20,7 +20,8 @@ public class UserInfoRemoteDataSource implements UserInfoDataSource {
     }
 
     @Override
-    public void saveDisbursementOption(UserInfo userInfo, String optionIndex) {
+    public void saveUserData(UserInfo userInfo, String optionIndex, String grantDate,
+                             String idProOfferDetail, String imei) {
 
     }
 

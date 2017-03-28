@@ -52,7 +52,6 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
     @Override
     public void onBindViewHolder(OffersViewHolder holder, int position) {
         Offer offer = mOffers.get(position);
-        if(actualPosition != -1 && position == actualPosition) offer.setCredited(true);
         holder.setOfferTypeCredited(offerTypeCredited);
         holder.setOffer(offer);
         holder.setItemCheckListener(this);
@@ -67,7 +66,12 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersViewHolder>
     public void selectOffer(int position, Offer offer) {
         lastPosition = actualPosition;
         actualPosition = position;
-        if(lastPosition != actualPosition && lastPosition != -1) notifyItemChanged(lastPosition);
+        if(lastPosition != actualPosition && lastPosition != -1) {
+            Offer offerTmp = mOffers.get(lastPosition);
+            offerTmp.setCredited(false);
+            mOffers.set(lastPosition, offerTmp);
+            notifyItemChanged(lastPosition);
+        }
     }
 
     @Override

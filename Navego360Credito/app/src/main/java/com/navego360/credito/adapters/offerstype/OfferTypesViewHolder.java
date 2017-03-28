@@ -77,6 +77,7 @@ public class OfferTypesViewHolder extends RecyclerView.ViewHolder {
 
         String amountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getAmount()));
         mAmountView.setText(mContext.getString(R.string.money_symbol) + " " + amountFormat);
+
         mCreditTypeView.setText(mOfferType.getCreditType());
 
         String quotaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getQuota()));

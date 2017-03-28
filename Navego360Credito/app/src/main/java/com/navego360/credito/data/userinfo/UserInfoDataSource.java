@@ -11,7 +11,8 @@ public interface UserInfoDataSource {
         void onDataNotAvailable();
     }
 
-    void saveDisbursementOption(UserInfo userInfo, String optionIndex);
+    void saveUserData(UserInfo userInfo, String optionIndex, String grantDate,
+                      String idProOfferDetail, String imei);
 
     void getUserInfo(GetUserInfoCallback callback);
 

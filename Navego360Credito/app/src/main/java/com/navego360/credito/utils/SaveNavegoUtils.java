@@ -37,6 +37,12 @@ public class SaveNavegoUtils {
                 ComponentIds.OfferData.OFERTA_CREDITO_CUOTA, offer.getQuota());
         ContentClientUtils.updateOrInsert(context, serviceIdS, formDataId,
                 ComponentIds.OfferData.OFERTA_CREDITO_TCEA, offer.getTcea());
+        ContentClientUtils.updateOrInsert(context, serviceIdS, formDataId,
+                ComponentIds.OfferData.OFERTA_ID_PRO_OFERTA_DETALLE, userInfo.getIdProOfferDetail());
+        ContentClientUtils.updateOrInsert(context, serviceIdS, formDataId,
+                ComponentIds.OfferData.OFERTA_FECHA_OTORGAMIENTO, userInfo.getGrantDate());
+        ContentClientUtils.updateOrInsert(context, serviceIdS, formDataId,
+                ComponentIds.OfferData.OFERTA_CODIGO_IMEI, userInfo.getImeiCode());
         ContentClientUtils.updateFormData(context, formDataId);
     }
 

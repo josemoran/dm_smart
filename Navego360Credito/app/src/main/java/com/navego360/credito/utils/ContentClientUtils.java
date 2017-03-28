@@ -157,12 +157,12 @@ public class ContentClientUtils {
 
     public static void updateService(Context context, String serviceId){
         try {
-            String STATUS_SERVICE = "0";
+            String STATUS_SERVICE = "838";
             ContentProviderClient yourCR = context.getContentResolver().acquireContentProviderClient(CONTENT_URI_1);
 
             ContentValues values = new ContentValues();
             values.put(ServiceEntry.COLUMN_NAME_FLAG_SYNC_MOBILE, 0);
-//            values.put(ServiceEntry.COLUMN_NAME_ID_ESTADO, STATUS_SERVICE);
+            values.put(ServiceEntry.COLUMN_NAME_ID_ESTADO, STATUS_SERVICE);
 
             String selection = ServiceEntry.COLUMN_NAME_SERVICE_ID + " LIKE ?";
             String[] selectionArgs = { serviceId };

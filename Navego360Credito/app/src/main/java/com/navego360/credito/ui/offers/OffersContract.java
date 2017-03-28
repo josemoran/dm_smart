@@ -26,6 +26,7 @@ public interface OffersContract {
         void showLastAmount(String lastAmount);
         void showRealAmount(String realAmount);
         void setDisbursementOption(String option);
+        void setDisbursementEnabled(String list);
         void showReadOnly();
         void blockOfferOptions(boolean blocked);
         void closePrintDialog();

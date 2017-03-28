@@ -22,6 +22,7 @@
     <color name="textColor3">#727172</color>
     <color name="textColor4">#9b9b9b</color>
     <color name="textColor5">#4d4d4d</color>
+    <color name="textColorAlert">#ff415c</color>
 
     <color name="offerCredited">#ff3333</color>
 
