@@ -19,7 +19,7 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_RATE = "rate";
         public static final String COLUMN_NAME_FLAT = "flat";
         public static final String COLUMN_NAME_DISGRACE = "disgrace";
-        public static final String COLUMN_NAME_OFFER_TYPE = "offerType";
+        public static final String COLUMN_NAME_OFFER_TYPE = "offerTypeLabel";
         public static final String COLUMN_NAME_BLOCKED = "blocked";
         public static final String COLUMN_NAME_CREDITED = "credited";
     }

@@ -62,7 +62,7 @@ public class DocumentUtils {
 
         data.add(("Nro. de Credito       : 24-00530-2014\n".getBytes()));
         data.add(("Fecha Aprobacion      : " + startDate + "\n").getBytes());
-        data.add(("Monto Otorgado (S./)  : " + twoDigitsFormat(adjustedCapital) + "\n").getBytes());
+        data.add(("Monto Otorgado (S/)   : " + twoDigitsFormat(adjustedCapital) + "\n").getBytes());
         data.add(("Plazo (meses)         : " + numMonths  + "\n").getBytes());
         data.add(("Tipo de Credito       : " + creditType.toUpperCase()  + "\n").getBytes());
         data.add(("Forma de Desembolso   : " + disbursement.toUpperCase()  + "\n").getBytes());
