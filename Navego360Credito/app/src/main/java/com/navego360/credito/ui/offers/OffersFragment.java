@@ -286,8 +286,11 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
 
     @Override
     public void showLastAmount(String lastAmount) {
+        if(lastAmount == null) {
+            lastAmount = "0";
+        }
         String lastAmountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(lastAmount));
-        mLastAmountView.setText(getContext().getString(R.string.money_symbol) + " " +  lastAmountFormat);
+        mLastAmountView.setText(getContext().getString(R.string.money_symbol) + " " + lastAmountFormat);
     }
 
     @Override

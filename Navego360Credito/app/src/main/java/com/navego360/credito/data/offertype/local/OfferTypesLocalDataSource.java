@@ -76,8 +76,6 @@ public class OfferTypesLocalDataSource implements OfferTypesDataSource {
         if (c != null) c.close();
         db.close();
 
-        Log.e("LOCAL","GET offer type | num: " + offerTypes.size());
-
         if (offerTypes.isEmpty()) callback.onDataNotAvailable();
         else callback.onOfferTypesLoaded(offerTypes);
     }

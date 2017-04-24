@@ -8,7 +8,6 @@ import android.os.RemoteException;
 
 import com.navego360.credito.models.navego.FormAnswer;
 import com.navego360.credito.models.navego.FormData;
-import com.navego360.credito.models.navego.Servicio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,57 +20,6 @@ import static com.navego360.credito.variables.ContentUri.CONTENT_URI_2;
 import static com.navego360.credito.variables.ContentUri.CONTENT_URI_3;
 
 public class ContentClientUtils {
-
-    public static Servicio getServicesData(Context context, int serviceId){
-        Servicio bServicio = null;
-        try {
-            String[] projection = {
-                    ServiceEntry.COLUMN_NAME_SERVICE_ID,
-                    ServiceEntry.COLUMN_NAME_ID_CASO,
-                    ServiceEntry.COLUMN_NAME_ID_ESTADO,
-                    ServiceEntry.COLUMN_NAME_CLIENTE_NOMBRE,
-                    ServiceEntry.COLUMN_NAME_CLIENTE_APATERNO,
-                    ServiceEntry.COLUMN_NAME_CLIENTE_AMATERNO,
-                    ServiceEntry.COLUMN_NAME_CLIENTE_TELEFONO,
-                    ServiceEntry.COLUMN_NAME_ID_MOTORIZADO,
-                    ServiceEntry.COLUMN_NAME_ID_COMPANY,
-                    ServiceEntry.COLUMN_NAME_TIPO_SERVICIO_ID,
-                    ServiceEntry.COLUMN_NAME_FORM_TYPE,
-                    ServiceEntry.COLUMN_NAME_CATEGORIA_ID,
-                    ServiceEntry.COLUMN_NAME_FLAG_SYNC_MOBILE
-            };
-
-            String selection = ServiceEntry.COLUMN_NAME_SERVICE_ID + " = ?";
-            String[] selectionArgs = {String.valueOf(serviceId)};
-
-            ContentProviderClient yourCR = context.getContentResolver().acquireContentProviderClient(CONTENT_URI_1);
-            Cursor c = yourCR.query(CONTENT_URI_1, projection, selection, selectionArgs, null);
-
-            if (c != null && c.getCount() > 0) {
-                c.moveToFirst();
-                bServicio = new Servicio();
-                bServicio.setIdServicio(c.getInt(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_SERVICE_ID)));
-                bServicio.setIdCaso(c.getInt(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_ID_CASO)));
-                bServicio.setIdEstado(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_ID_ESTADO)));
-                bServicio.setClienteNombre(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_CLIENTE_NOMBRE)));
-                bServicio.setClienteAPaterno(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_CLIENTE_APATERNO)));
-                bServicio.setClienteAMaterno(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_CLIENTE_AMATERNO)));
-                bServicio.setClienteTelefono(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_CLIENTE_TELEFONO)));
-                bServicio.setIdMotorizado(c.getInt(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_ID_MOTORIZADO)));
-                bServicio.setCompanyId(c.getInt(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_ID_COMPANY)));
-                bServicio.setIdTipoServicio(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_TIPO_SERVICIO_ID)));
-                bServicio.setFormType(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_FORM_TYPE)));
-                bServicio.setCategoriaId(c.getString(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_CATEGORIA_ID)));
-                bServicio.setFlagSyncmobile(c.getInt(c.getColumnIndexOrThrow(ServiceEntry.COLUMN_NAME_FLAG_SYNC_MOBILE)));
-            }
-
-            if (c != null)  c.close();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-
-        return bServicio;
-    }
 
     public static List<FormData> getFormData(Context context, int formId, int serviceId){
         List<FormData> formDataList = new ArrayList<>();
