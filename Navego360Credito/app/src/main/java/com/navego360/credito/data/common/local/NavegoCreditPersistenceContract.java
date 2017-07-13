@@ -87,6 +87,14 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_FORM_TYPE = "FORMTYPE";
         public static final String COLUMN_NAME_CATEGORIA_ID = "CATEGORIA_ID";
         public static final String COLUMN_NAME_FLAG_SYNC_MOBILE = "FLAGSYNCMOBILE";
+        public static final String COLUMN_NAME_LATITUDE_STATUS = "LATITUD_ESTADO";
+        public static final String COLUMN_NAME_LONGITUDE_STATUS = "LONGITUD_ESTADO";
+        public static final String COLUMN_NAME_BATTERY = "BATERIA";
+        public static final String COLUMN_NAME_LATITUDE = "LATITUD";
+        public static final String COLUMN_NAME_LONGITUDE = "LONGITUD";
+        public static final String COLUMN_NAME_PRECISION = "PRECISION";
+        public static final String COLUMN_NAME_PROVIDER = "PROVIDER";
+        public static final String COLUMN_NAME_BLOCKED = "BLOCKED";
     }
 
     public static abstract class FormDataEntry implements BaseColumns {
@@ -97,6 +105,7 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_EFS = "EFS";
         public static final String COLUMN_NAME_OPERATION = "OPERATION";
         public static final String COLUMN_NAME_SYNCWEB = "SYNCWEB";
+        public static final String COLUMN_NAME_UPDATEFORM = "UPDATEFORM";
     }
 
     public static abstract class FormAnswerEntry implements BaseColumns {
@@ -107,6 +116,29 @@ public final class NavegoCreditPersistenceContract {
         public static final String COLUMN_NAME_ANSWER = "ANSWER";
         public static final String COLUMN_NAME_OPERATION = "OPERATION";
         public static final String COLUMN_NAME_SYNCWEB = "SYNCWEB";
+    }
+
+    public static abstract class LastPositionEntry implements BaseColumns {
+        public static final String COLUMN_NAME_LATITUDE = "LATITUD";
+        public static final String COLUMN_NAME_LONGITUDE = "LONGITUD";
+        public static final String COLUMN_NAME_DATE = "FECHA_HORA";
+        public static final String COLUMN_NAME_ORIGIN = "ORIGEN";
+        public static final String COLUMN_NAME_IP_MOBILE = "IPMOVIL";
+        public static final String COLUMN_NAME_PORT = "PUERTO";
+        public static final String COLUMN_NAME_MODEL = "MODELO";
+        public static final String COLUMN_NAME_COMMAND = "COMANDO";
+        public static final String COLUMN_NAME_ID_DEVICE = "IDDISPOSITIVO";
+        public static final String COLUMN_NAME_AVAILABILITY = "DISPONIBILIDAD";
+        public static final String COLUMN_NAME_SPEED = "VELOCIDAD";
+        public static final String COLUMN_NAME_ORIENTATION = "ORIENTACION";
+        public static final String COLUMN_NAME_GAS_LEVEL = "NIVEL_TEMPERATURA";
+        public static final String COLUMN_NAME_TEMP_LEVEL = "NIVEL_TEMPERATURA";
+        public static final String COLUMN_NAME_STATUS = "ESTADO";
+        public static final String COLUMN_NAME_PROVIDER = "PROVIDER";
+        public static final String COLUMN_NAME_PRECISION = "PRECISION";
+        public static final String COLUMN_NAME_BATTERY = "BATERIA";
+        public static final String COLUMN_NAME_IS_GPS = "ISGPS";
+        public static final String COLUMN_NAME_IS_NET = "ISNET";
     }
 
 }

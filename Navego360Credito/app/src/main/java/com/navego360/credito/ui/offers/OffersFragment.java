@@ -302,15 +302,19 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
     @Override
     public void setDisbursementOption(String option) {
         RadioButton optionButton = null;
-        if(option.equals(BOVEDA_OPTION)){
-            optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.checkout_option);
-        } else if(option.equals(GERENCIA_OPTION)) {
-            optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.check_option);
-        } else if(option.equals(DEPOSITO_OPTION)) {
-            optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.deposit_option);
+        if(option != null) {
+            if (option.equals(BOVEDA_OPTION)) {
+                optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.checkout_option);
+            } else if (option.equals(GERENCIA_OPTION)) {
+                optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.check_option);
+            } else if (option.equals(DEPOSITO_OPTION)) {
+                optionButton = (RadioButton) mDisbursementOptions.findViewById(R.id.deposit_option);
+            }
+            if (optionButton != null) {
+                if (optionButton.getVisibility() == View.GONE) optionButton = null;
+                if (optionButton != null) optionButton.setChecked(true);
+            }
         }
-        if (optionButton.getVisibility() == View.GONE) optionButton = null;
-        if(optionButton != null) optionButton.setChecked(true);
     }
 
     @Override

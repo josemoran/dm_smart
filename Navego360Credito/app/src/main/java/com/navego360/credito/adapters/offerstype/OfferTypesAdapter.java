@@ -39,9 +39,9 @@ public class OfferTypesAdapter extends RecyclerView.Adapter<OfferTypesViewHolder
     public void setExpirationDate(String expirationDate){
         if(expirationDate != null){
             try {
-                Date expDate = DateUtils.convertDate(expirationDate, DateUtils.formatDate5);
+                Date expDate = DateUtils.addDays(expirationDate, DateUtils.formatDate5, 1);
                 Date now = new Date();
-                if(now.before(expDate)){
+                if(!now.before(expDate)){
                     allBlocked = true;
                     notifyDataSetChanged();
                 }

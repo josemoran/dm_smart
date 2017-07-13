@@ -83,12 +83,18 @@ public class OffersViewHolder extends RecyclerView.ViewHolder implements View.On
         String tceaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getTcea()));
         mTceaView.setText(tceaFormat + mContext.getString(R.string.percentage_symbol));
 
-        String quotaNotAdjustFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getQuotaNoAdjust()));
-        mQuotaNotAdjustView.setText(quotaNotAdjustFormat);
-        String rateGraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateGrace()));
-        mRateGraceView.setText(rateGraceFormat);
-        String rateProcessFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateProcess()));
-        mRateProcessView.setText(rateProcessFormat);
+        if(mOffer.getQuotaNoAdjust() != null) {
+            String quotaNotAdjustFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getQuotaNoAdjust()));
+            mQuotaNotAdjustView.setText(quotaNotAdjustFormat);
+        }
+        if(mOffer.getRateGrace() != null) {
+            String rateGraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateGrace()));
+            mRateGraceView.setText(rateGraceFormat);
+        }
+        if(mOffer.getRateProcess() != null) {
+            String rateProcessFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateProcess()));
+            mRateProcessView.setText(rateProcessFormat);
+        }
         mMonthGraceView.setText(mOffer.getMonthGrace());
         mDayProcessView.setText(mOffer.getDaysProcess());
 

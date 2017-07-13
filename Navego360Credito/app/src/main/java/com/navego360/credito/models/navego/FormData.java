@@ -8,6 +8,7 @@ public class FormData {
     private String efs;
     private int operation;
     private int syncWeb;
+    private int updateForm;
 
     /* Constructor */
     public FormData(){}
@@ -69,10 +70,18 @@ public class FormData {
         this.syncWeb = syncWeb;
     }
 
+    public int getUpdateForm() {
+        return updateForm;
+    }
+
+    public void setUpdateForm(int updateForm) {
+        this.updateForm = updateForm;
+    }
+
     @Override
     public String toString(){
         return "formDataId: " + formDataId + "|formId: " + formId
                 + "|serviceId: " + serviceId + "|label: " + label + "|efs: " + efs
-                + "|operation: " + operation + "|syncWeb: " + syncWeb;
+                + "|operation: " + operation + "|syncWeb: " + syncWeb + "|updateform: " + updateForm;
     }
 }

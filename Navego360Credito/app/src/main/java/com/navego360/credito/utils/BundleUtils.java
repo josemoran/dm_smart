@@ -76,8 +76,10 @@ public class BundleUtils {
             List<FormAnswer> formAnswerList = getFormAnswer(context, formData.getFormDataId(), serviceId);
             OfferType offerTypeTmp = generateOfferType(formAnswerList);
             if (offerTypes.size() == 0) {
+                Log.e("generateOfferTypes","No habia tipos de ofertas");
                 offerTypes.add(offerTypeTmp);
             } else {
+                Log.e("generateOfferTypes","Existe tipos de ofertas : " + offerTypes.size());
                 for (OfferType offerType : offerTypes) {
                     if (offerType.getId().equals(offerTypeTmp.getId())) {
                         if(offerType.isCredited()){
@@ -134,7 +136,9 @@ public class BundleUtils {
         int serviceId = bundle.getInt("serviceId");//serviceId
         List<FormData> formDataListInfo = getFormData(context, formTypeUserData, serviceId);
         FormData formDataInfo = formDataListInfo.get(0);
-        return formDataInfo.getOperation() == 2;
+        // return formDataInfo.getOperation() == 2;
+        return formDataInfo.getUpdateForm() == 1;
+        // Usar campo que indique datos actualizados
     }
 
 }

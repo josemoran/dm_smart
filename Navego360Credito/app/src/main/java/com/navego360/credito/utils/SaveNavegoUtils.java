@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.navego360.credito.models.credito.Offer;
 import com.navego360.credito.models.credito.UserInfo;
+import com.navego360.credito.models.navego.CoordenadaGps;
 import com.navego360.credito.variables.ComponentIds;
 
 public class SaveNavegoUtils {
@@ -48,7 +49,9 @@ public class SaveNavegoUtils {
 
     // Service
     public static void saveService(Context context, int serviceId){
-        ContentClientUtils.updateService(context, String.valueOf(serviceId));
+        CoordenadaGps coordenadaGps = ContentClientUtils.getLastPosition(context);
+        ContentClientUtils.updateService(context, String.valueOf(serviceId), coordenadaGps);
+        ContentClientUtils.insertStatusService(context, String.valueOf(serviceId), coordenadaGps);
     }
 
 }
