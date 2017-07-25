@@ -14,6 +14,7 @@ import com.navego360.credito.R;
 import com.navego360.credito.interfaces.OfferItemCheckListener;
 import com.navego360.credito.interfaces.OfferItemListener;
 import com.navego360.credito.models.credito.Offer;
+import com.navego360.credito.utils.AlertDialogUtils;
 import com.navego360.credito.utils.DecimalFormatUtils;
 
 public class OffersViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -77,26 +78,58 @@ public class OffersViewHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     private void setOfferData(){
-        String quotaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getQuota()));
-        mQuotaView.setText(quotaFormat);
-        mCreditDateView.setText(mOffer.getCreditDate()  + " " + mContext.getString(R.string.date_value));
-        String tceaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getTcea()));
-        mTceaView.setText(tceaFormat + mContext.getString(R.string.percentage_symbol));
+        if(mOffer.getQuota() != null && !mOffer.getQuota().isEmpty()) {
+            String quotaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getQuota()));
+            mQuotaView.setText(quotaFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.quota_empty_warning);
+        }
 
-        if(mOffer.getQuotaNoAdjust() != null) {
+        if(mOffer.getCreditDate() != null && !mOffer.getCreditDate().isEmpty()) {
+            mCreditDateView.setText(mOffer.getCreditDate() + " " + mContext.getString(R.string.date_value));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.credit_date_empty_warning);
+        }
+
+        if(mOffer.getTcea() != null && !mOffer.getTcea().isEmpty()) {
+            String tceaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getTcea()));
+            mTceaView.setText(tceaFormat + mContext.getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.tcea_empty_warning);
+        }
+
+        if(mOffer.getQuotaNoAdjust() != null && !mOffer.getQuotaNoAdjust().isEmpty()) {
             String quotaNotAdjustFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getQuotaNoAdjust()));
             mQuotaNotAdjustView.setText(quotaNotAdjustFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.quota_not_adjust_empty_warning);
         }
-        if(mOffer.getRateGrace() != null) {
+
+        if(mOffer.getRateGrace() != null && !mOffer.getRateGrace().isEmpty()) {
             String rateGraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateGrace()));
             mRateGraceView.setText(rateGraceFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.rate_grace_empty_warning);
         }
-        if(mOffer.getRateProcess() != null) {
+
+        if(mOffer.getRateProcess() != null && !mOffer.getRateProcess().isEmpty()) {
             String rateProcessFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOffer.getRateProcess()));
             mRateProcessView.setText(rateProcessFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.rate_process_empty_warning);
         }
-        mMonthGraceView.setText(mOffer.getMonthGrace());
-        mDayProcessView.setText(mOffer.getDaysProcess());
+
+        if(mOffer.getMonthGrace() != null && !mOffer.getMonthGrace().isEmpty()) {
+            mMonthGraceView.setText(mOffer.getMonthGrace());
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.month_grace_empty_warning);
+        }
+
+        if(mOffer.getDaysProcess() != null && !mOffer.getDaysProcess().isEmpty()) {
+            mDayProcessView.setText(mOffer.getDaysProcess());
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.days_process_empty_warning);
+        }
 
         mOption.setChecked(mOffer.isCredited());
 

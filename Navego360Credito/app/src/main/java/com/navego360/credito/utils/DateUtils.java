@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit;
 public class DateUtils {
     public static String formatDate4 = "dd/MM/yy";
     public static String formatDate5 = "yyyy-MM-dd";
-    public static String formatDate6 = "dd/MM/yyyy HH:mm.ss";
+//    public static String formatDate6 = "dd/MM/yyyy HH:mm.ss";
+    public static String formatDate6 = "yyyy-MM-dd HH:mm:ss";
 
     public static String convertDate(String dateString, String formatDate,
                                      String formatConvert) throws ParseException {

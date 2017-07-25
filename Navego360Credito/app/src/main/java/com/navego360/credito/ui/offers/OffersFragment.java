@@ -30,6 +30,7 @@ import com.navego360.credito.interfaces.OfferDialogsListener;
 import com.navego360.credito.interfaces.OfferItemListener;
 import com.navego360.credito.models.credito.Offer;
 import com.navego360.credito.ui.ExitActivity;
+import com.navego360.credito.utils.AlertDialogUtils;
 import com.navego360.credito.utils.DecimalFormatUtils;
 import com.navego360.credito.widgets.ToastMessage;
 
@@ -226,13 +227,21 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
 
     @Override
     public void showClientName(String clientName) {
-        mClientNameView.setText(clientName.toUpperCase());
+        if(clientName != null && !clientName.isEmpty()) {
+            mClientNameView.setText(clientName.toUpperCase());
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.client_name_empty_warning);
+        }
     }
 
     @Override
     public void showAmount(String amount) {
-        String amountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(amount));
-        mMaxAmountView.setText(getContext().getString(R.string.money_symbol) +  " " + amountFormat);
+        if(amount != null && !amount.isEmpty()) {
+            String amountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(amount));
+            mMaxAmountView.setText(getContext().getString(R.string.money_symbol) + " " + amountFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.amount_empty_warning);
+        }
     }
 
     private void showNoOffersViews(String mainText) {
@@ -244,44 +253,70 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
 
     @Override
     public void showCreditType(String creditType) {
-        mCreditTypeView.setText(creditType);
+        if(creditType != null && !creditType.isEmpty()) {
+            mCreditTypeView.setText(creditType);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.credit_type_empty_warning);
+        }
     }
 
     @Override
     public void showApprovedDate(String approvedDate) {
-        mApprovedDateView.setText(approvedDate);
+        if(approvedDate != null && !approvedDate.isEmpty()) {
+            mApprovedDateView.setText(approvedDate);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.approved_date_empty_warning);
+        }
     }
 
     @Override
     public void showTea(String tea) {
-        if(tea != null && !tea.equals("")) {
+        if(tea != null && !tea.isEmpty()) {
             String teaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(tea));
             mTeaView.setText(teaFormat + getContext().getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.tea_empty_warning);
         }
     }
 
     @Override
     public void showFlat(String flat) {
-        String flatFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(flat));
-        mFlatView.setText(flatFormat + getContext().getString(R.string.percentage_symbol));
+        if(flat != null && !flat.isEmpty()) {
+            String flatFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(flat));
+            mFlatView.setText(flatFormat + getContext().getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.flat_empty_warning);
+        }
     }
 
     @Override
     public void showDisgrace(String disgrace) {
-        String disgraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(disgrace));
-        mDisgraceView.setText(disgraceFormat + getContext().getString(R.string.percentage_symbol));
+        if(disgrace != null && !disgrace.isEmpty()) {
+            String disgraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(disgrace));
+            mDisgraceView.setText(disgraceFormat + getContext().getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.disgrace_empty_warning);
+        }
     }
 
     @Override
     public void showDiscount(String discount) {
-        mDiscountView.setText(discount);
+        if(discount != null && !discount.isEmpty()) {
+            mDiscountView.setText(discount);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.discount_empty_warning);
+        }
     }
 
     @Override
     public void showBorrowCapacity(String borrowCapacity) {
-        String borrowCapacityFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(borrowCapacity));
-        mBorrowCapacityView.setText(getContext().getString(R.string.money_symbol) + " " +  borrowCapacityFormat);
-        mListAdapter.setMaxAmount(borrowCapacity);
+        if(borrowCapacity != null && !borrowCapacity.isEmpty()) {
+            String borrowCapacityFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(borrowCapacity));
+            mBorrowCapacityView.setText(getContext().getString(R.string.money_symbol) + " " + borrowCapacityFormat);
+            mListAdapter.setMaxAmount(borrowCapacity);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.borrow_capacity_empty_warning);
+        }
     }
 
     @Override
@@ -295,8 +330,12 @@ public class OffersFragment extends Fragment implements OffersContract.View, Off
 
     @Override
     public void showRealAmount(String realAmount) {
-        String realAmountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(realAmount));
-        mRealAmountView.setText(getContext().getString(R.string.money_symbol) + " " + realAmountFormat);
+        if(realAmount != null && !realAmount.isEmpty()) {
+            String realAmountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(realAmount));
+            mRealAmountView.setText(getContext().getString(R.string.money_symbol) + " " + realAmountFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.real_amount_empty_warning);
+        }
     }
 
     @Override

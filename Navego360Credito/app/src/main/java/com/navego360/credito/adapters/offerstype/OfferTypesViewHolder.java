@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.navego360.credito.R;
 import com.navego360.credito.interfaces.OfferTypeItemListener;
 import com.navego360.credito.models.credito.OfferType;
+import com.navego360.credito.utils.AlertDialogUtils;
 import com.navego360.credito.utils.DecimalFormatUtils;
 import com.navego360.credito.utils.ViewUtils;
 import com.navego360.credito.widgets.ToastMessage;
@@ -75,26 +76,59 @@ public class OfferTypesViewHolder extends RecyclerView.ViewHolder {
         mOfferTypeView.setText(getOfferTypeText(mContext, mOfferType));
         mOfferTypeView.setTextColor(Color.parseColor(color));
 
-        String amountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getAmount()));
-        mAmountView.setText(mContext.getString(R.string.money_symbol) + " " + amountFormat);
+        if(mOfferType.getAmount() != null && !mOfferType.getAmount().isEmpty()) {
+            String amountFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getAmount()));
+            mAmountView.setText(mContext.getString(R.string.money_symbol) + " " + amountFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.amount_empty_warning);
+        }
 
-        mCreditTypeView.setText(mOfferType.getCreditType());
+        if(mOfferType.getCreditType() != null && !mOfferType.getCreditType().isEmpty()) {
+            mCreditTypeView.setText(mOfferType.getCreditType());
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.credit_type_empty_warning);
+        }
 
-        String quotaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getQuota()));
-        mQuotaView.setText(mContext.getString(R.string.money_symbol) + " " + quotaFormat);
-        mCreditDateView.setText(mOfferType.getCreditDate() + " " + mContext.getString(R.string.date_value));
+        if(mOfferType.getQuota() != null && !mOfferType.getQuota().isEmpty()) {
+            String quotaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getQuota()));
+            mQuotaView.setText(mContext.getString(R.string.money_symbol) + " " + quotaFormat);
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.quota_empty_warning);
+        }
 
-        String tceaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getTcea()));
-        mTceaView.setText(tceaFormat + mContext.getString(R.string.percentage_symbol));
+        if(mOfferType.getCreditDate() != null && !mOfferType.getCreditDate().isEmpty()) {
+            mCreditDateView.setText(mOfferType.getCreditDate() + " " + mContext.getString(R.string.date_value));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.credit_date_empty_warning);
+        }
 
-        String rateFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getRate()));
-        mRateView.setText(rateFormat + mContext.getString(R.string.percentage_symbol));
+        if(mOfferType.getTcea() != null && !mOfferType.getTcea().isEmpty()) {
+            String tceaFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getTcea()));
+            mTceaView.setText(tceaFormat + mContext.getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.tcea_empty_warning);
+        }
 
-        String flatFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getFlat()));
-        mFlatView.setText(flatFormat+ mContext.getString(R.string.percentage_symbol));
+        if(mOfferType.getRate() != null && !mOfferType.getRate().isEmpty()) {
+            String rateFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getRate()));
+            mRateView.setText(rateFormat + mContext.getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.rate_empty_warning);
+        }
 
-        String disgraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getDisgrace()));
-        mDisgraceView.setText(disgraceFormat + mContext.getString(R.string.percentage_symbol));
+        if(mOfferType.getFlat() != null && !mOfferType.getFlat().isEmpty()) {
+            String flatFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getFlat()));
+            mFlatView.setText(flatFormat + mContext.getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.flat_empty_warning);
+        }
+
+        if(mOfferType.getDisgrace() != null && !mOfferType.getDisgrace().isEmpty()) {
+            String disgraceFormat = DecimalFormatUtils.twoDigitsFormat(Double.valueOf(mOfferType.getDisgrace()));
+            mDisgraceView.setText(disgraceFormat + mContext.getString(R.string.percentage_symbol));
+        } else {
+            AlertDialogUtils.createWarningDialog(mContext, R.string.disgrace_empty_warning);
+        }
 
         if(mOfferType.isBlocked()){
             container.setEnabled(false);

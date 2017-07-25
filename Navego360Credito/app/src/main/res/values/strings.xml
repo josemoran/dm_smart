@@ -86,4 +86,29 @@
     <!-- DOCENTE -->
     <string name="loading_user_info_error">Hubo un problema al cargar los datos del docente.</string>
 
+    <!-- CAMPOS INCLOMPLETOS -->
+    <string name="client_name_empty_warning">Los campos \'Apellido Paterno\', \'Apellido Materno\', \'Nombres\' del formulario \'Actualización de Datos\' no han sido llenados correctamente.</string>
+
+    <string name="credit_type_empty_warning">El campo \'tipo de credito\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+    <string name="offer_date_empty_warning">El campo \'fecha vencimiento\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+    <string name="approved_date_empty_warning">El campo \'fecha_aprobacion\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+    <string name="tea_empty_warning">El campo \'tea\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+    <string name="discount_empty_warning">El campo \'Forma de desembolso\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+    <string name="real_amount_empty_warning">El campo \'Monto a desembolsar\' del formulario \'Ofertas\' no ha sido llenado correctamente.</string>
+
+    <string name="offer_type_id_empty_warning">El campo \'tipo de credito\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="amount_empty_warning">El campo \'monto aprobado\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="quota_empty_warning">El campo \'valor cuota\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="credit_date_empty_warning">El campo \'plazo credito\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="tcea_empty_warning">El campo \'tcea\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="rate_empty_warning">El campo \'taza interes\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="flat_empty_warning">El campo \'gastos flat\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="disgrace_empty_warning">El campo \'desgravamen\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="borrow_capacity_empty_warning">El campo \'capacidad endeudamiento\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="quota_not_adjust_empty_warning">El campo \'cuota sin ajuste\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="rate_grace_empty_warning">El campo \'intereses de gracia\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="rate_process_empty_warning">El campo \'interes en proceso\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="month_grace_empty_warning">El campo \'meses de gracia\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+    <string name="days_process_empty_warning">El campo \'dias en proceso\' del formulario \'OfertasDetail\' no ha sido llenado correctamente.</string>
+
 </resources>

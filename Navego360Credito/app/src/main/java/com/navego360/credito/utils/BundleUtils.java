@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.navego360.credito.R;
 import com.navego360.credito.data.common.local.CreditoRepository;
 import com.navego360.credito.data.offer.OffersRepository;
 import com.navego360.credito.data.offertype.OfferTypesRepository;
@@ -76,25 +77,32 @@ public class BundleUtils {
             List<FormAnswer> formAnswerList = getFormAnswer(context, formData.getFormDataId(), serviceId);
             OfferType offerTypeTmp = generateOfferType(formAnswerList);
             if (offerTypes.size() == 0) {
-                Log.e("generateOfferTypes","No habia tipos de ofertas");
                 offerTypes.add(offerTypeTmp);
             } else {
-                Log.e("generateOfferTypes","Existe tipos de ofertas : " + offerTypes.size());
                 for (OfferType offerType : offerTypes) {
-                    if (offerType.getId().equals(offerTypeTmp.getId())) {
-                        if(offerType.isCredited()){
-                            offerTypeTmp.setCredited(offerType.isCredited());
-                        }
-                        if (Double.parseDouble(offerType.getAmount()) <
-                                Double.parseDouble(offerTypeTmp.getAmount())) {
-                            int position = offerTypes.indexOf(offerType);
-                            offerTypes.set(position, offerTypeTmp);
-                        } else if(Double.parseDouble(offerType.getAmount()) ==
-                                Double.parseDouble(offerTypeTmp.getAmount())){
-                            if(Double.parseDouble(offerType.getCreditDate()) <=
-                                    Double.parseDouble(offerTypeTmp.getCreditDate())){
+                    if(offerType.getId() != null && !offerType.getId().isEmpty() ||
+                            (offerTypeTmp.getId() != null && !offerTypeTmp.getId().isEmpty())) {
+                        if (offerType.getId().equals(offerTypeTmp.getId())) {
+                            if (offerType.isCredited()) {
+                                offerTypeTmp.setCredited(offerType.isCredited());
+                            }
+                            if (Double.parseDouble(offerType.getAmount()) <
+                                    Double.parseDouble(offerTypeTmp.getAmount())) {
                                 int position = offerTypes.indexOf(offerType);
                                 offerTypes.set(position, offerTypeTmp);
+                            } else if (Double.parseDouble(offerType.getAmount()) ==
+                                    Double.parseDouble(offerTypeTmp.getAmount())) {
+                                if (Double.parseDouble(offerType.getCreditDate()) <=
+                                        Double.parseDouble(offerTypeTmp.getCreditDate())) {
+                                    int position = offerTypes.indexOf(offerType);
+                                    offerTypes.set(position, offerTypeTmp);
+                                } else {
+                                    if (offerTypeTmp.isCredited()) {
+                                        int position = offerTypes.indexOf(offerType);
+                                        offerType.setCredited(offerTypeTmp.isCredited());
+                                        offerTypes.set(position, offerType);
+                                    }
+                                }
                             } else {
                                 if (offerTypeTmp.isCredited()) {
                                     int position = offerTypes.indexOf(offerType);
@@ -102,14 +110,10 @@ public class BundleUtils {
                                     offerTypes.set(position, offerType);
                                 }
                             }
-                        } else {
-                            if(offerTypeTmp.isCredited()) {
-                                int position = offerTypes.indexOf(offerType);
-                                offerType.setCredited(offerTypeTmp.isCredited());
-                                offerTypes.set(position, offerType);
-                            }
+                            insertNew = false;
                         }
-                        insertNew = false;
+                    } else {
+                        AlertDialogUtils.createWarningDialog(context, R.string.offer_type_id_empty_warning);
                     }
                 }
                 if (insertNew) offerTypes.add(offerTypeTmp);

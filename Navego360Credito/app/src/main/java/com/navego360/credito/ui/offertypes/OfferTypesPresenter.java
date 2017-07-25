@@ -104,8 +104,8 @@ public class OfferTypesPresenter implements OfferTypesContract.Presenter {
     @Override
     public void showOfferTypesInfo(String client, String date, String creditType) {
         mCreditType = creditType;
-        mExpirationDate = date;
         mOffersTypeView.showClientName(client);
+        mExpirationDate = date;
         mOffersTypeView.showOfferDate(date);
     }
 

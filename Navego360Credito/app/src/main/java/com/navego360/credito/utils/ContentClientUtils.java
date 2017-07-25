@@ -201,6 +201,7 @@ public class ContentClientUtils {
             ContentProviderClient yourCR = context.getContentResolver().acquireContentProviderClient(CONTENT_URI_2);
             ContentValues values = new ContentValues();
             values.put(FormDataEntry.COLUMN_NAME_OPERATION, 2);
+            values.put(FormDataEntry.COLUMN_NAME_SYNCWEB, 0);
 
             String selection = FormDataEntry.COLUMN_NAME_ID_FORM_DATA + " LIKE ?";
             String[] selectionArgs = { formDataId };

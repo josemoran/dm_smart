@@ -17,6 +17,7 @@ import com.navego360.credito.adapters.offerstype.OfferTypesAdapter;
 import com.navego360.credito.interfaces.OfferTypeItemListener;
 import com.navego360.credito.models.credito.OfferType;
 import com.navego360.credito.ui.offers.OffersActivity;
+import com.navego360.credito.utils.AlertDialogUtils;
 import com.navego360.credito.variables.IntentKeys.OfferDetail;
 import com.navego360.credito.widgets.ToastMessage;
 import com.navego360.credito.widgets.VerticalSpaceItemDecoration;
@@ -100,22 +101,30 @@ public class OfferTypesFragment extends Fragment implements OfferTypesContract.V
 
     @Override
     public void showClientName(String name) {
-        AppCompatActivity activity = ((AppCompatActivity)getContext());
-        ViewGroup actionBarLayout = (ViewGroup) activity.getLayoutInflater().inflate(R.layout.layout_actionbar, null);
-        TextView bTitle = (TextView) actionBarLayout.findViewById(R.id.action_bar_title);
-        bTitle.setText(name.toUpperCase());
+        if(name != null && !name.isEmpty()) {
+            AppCompatActivity activity = ((AppCompatActivity) getContext());
+            ViewGroup actionBarLayout = (ViewGroup) activity.getLayoutInflater().inflate(R.layout.layout_actionbar, null);
+            TextView bTitle = (TextView) actionBarLayout.findViewById(R.id.action_bar_title);
+            bTitle.setText(name.toUpperCase());
 
-        ActionBar actionBar = activity.getSupportActionBar();
-        assert actionBar != null;
+            ActionBar actionBar = activity.getSupportActionBar();
+            assert actionBar != null;
 
-        actionBar.setCustomView(actionBarLayout);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayShowCustomEnabled(true);
+            actionBar.setCustomView(actionBarLayout);
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowCustomEnabled(true);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.client_name_empty_warning);
+        }
     }
 
     @Override
     public void showOfferDate(String date) {
-        mDateOfferView.setText(date);
+        if(date != null && !date.isEmpty()) {
+            mDateOfferView.setText(date);
+        } else {
+            AlertDialogUtils.createWarningDialog(getContext(), R.string.offer_date_empty_warning);
+        }
     }
 
     @Override
