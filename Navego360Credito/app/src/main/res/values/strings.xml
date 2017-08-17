@@ -20,7 +20,7 @@
     <string name="vivienda_label">Vivienda</string>
     <string name="credit_type_label">Tipo de crédito:</string>
     <string name="amount_label">Monto aprobado:</string>
-    <string name="quota_label">Valor de cuota:</string>
+    <string name="quota_label">Cuota máxima total:</string>
     <string name="credit_date_label">Plazo crédito:</string>
     <string name="tcea_label">TCEA:</string>
     <string name="rate_label">Tasa de interés:</string>
@@ -35,11 +35,11 @@
     <string name="offer_credited">Crédito otorgado - solo lectura</string>
     <string name="teacher_label">Docente</string>
     <string name="alert_message">Variaron Datos de la Boleta</string>
-    <string name="max_offer_amount">Oferta máxima</string>
+    <string name="max_offer_amount">Monto aprobado</string>
     <string name="credit_type_label_2">Tipo de crédito</string>
     <string name="approved_date_label">Fecha de aprobación : </string>
     <string name="tea_label">TEA:</string>
-    <string name="flat_2_label">Flat (G.admin+FSC):</string>
+    <string name="flat_2_label">Comisión única (G. Adm. + FSC):</string>
     <string name="discount_label">Forma de descuento:</string>
     <string name="borrow_text_label">Capacidad de endeudamiento </string>
     <string name="offers_title">Ofertas</string>
